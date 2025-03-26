@@ -1,0 +1,483 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    perspective: 8px;
+    transform-style: preserve-3d;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background: white;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3, h4 {
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: #3b7302;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #3b7302;
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #2a5501;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Styles */
+header {
+    background-color: rgba(255, 255, 255, 0.95);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #3b7302;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #3b7302;
+}
+
+/* Content Section Styles */
+.content-section {
+    position: relative;
+    background: white;
+    z-index: 2;
+    padding: 80px 0;
+    scroll-margin-top: 100px;
+}
+
+/* Parallax Section Styles */
+.parallax-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    transform-style: preserve-3d;
+    z-index: 1;
+    scroll-margin-top: 100px;
+}
+
+.parallax-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    transform: translateZ(-6px) scale(1.75);
+}
+
+/* Add styles for home and facilities sections */
+#home .content,
+#facilities .content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Add specific styles for home section content */
+#home .content {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#home .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Section Spacing */
+#about {
+    background-color: white;
+    position: relative;
+    z-index: 2;
+    padding: 100px 0;
+    margin-bottom: 100px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.about-content {
+    position: relative;
+    z-index: 3;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#facilities {
+    position: relative;
+    margin-top: 100px;
+    padding-top: 100px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+
+/* About Section Styles */
+.about-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+    gap: 50px;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-image {
+    flex: 1;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Facilities Section Styles */
+.facilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.facility-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.facility-card:hover {
+    transform: translateY(-10px);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.facility-card i {
+    font-size: 3rem;
+    color: #3b7302;
+    margin-bottom: 20px;
+    background-color: white;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    border-radius: 50%;
+}
+
+/* Services Section Styles */
+#services {
+    background-color: white;
+    position: relative;
+    z-index: 1;
+    padding: 100px 0;
+}
+
+.services-wrapper {
+    margin-top: 50px;
+}
+
+.service-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.service-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.service-item img {
+    width: 40%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.service-info {
+    padding: 30px;
+    flex: 1;
+}
+
+/* Contact Section Styles */
+#contact {
+    background-color: white;
+    position: relative;
+    z-index: 1;
+    padding: 100px 0;
+}
+
+.contact-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    gap: 50px;
+}
+
+.contact-info {
+    flex: 1;
+}
+
+.contact-image {
+    flex: 1;
+    text-align: center;
+}
+
+.contact-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-image h3 {
+    color: #3b7302;
+    font-size: 1.5rem;
+    margin-top: 15px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.info-item i {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    background-color: #3b7302;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.social-media {
+    margin-top: 30px;
+}
+
+.social-media a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: #3b7302;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    margin-right: 10px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.social-media a:hover {
+    transform: translateY(-5px);
+    background-color: #2a5501;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Arial', sans-serif;
+}
+
+.form-group textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #222;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 1024px) {
+    .about-content,
+    .contact-wrapper {
+        flex-direction: column;
+    }
+    
+    .service-item,
+    .service-item:nth-child(even) {
+        flex-direction: column;
+    }
+    
+    .service-item img {
+        width: 100%;
+    }
+    
+    /* Adjust parallax for medium screens */
+    body {
+        perspective: 1.5px;
+    }
+    
+    .parallax-bg {
+        height: 110%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    header {
+        padding: 15px 20px;
+        flex-direction: column;
+    }
+    
+    nav ul {
+        margin-top: 15px;
+    }
+    
+    nav ul li {
+        margin-left: 15px;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    .parallax-section {
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .facilities-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Adjust parallax for mobile devices */
+    body {
+        perspective: 1px;
+    }
+    
+    .parallax-bg {
+        height: 100%;
+        transform: translateZ(-0.5px) scale(1.5);
+    }
+} 
