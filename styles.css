@@ -69,25 +69,6 @@ img {
     display: block;
 }
 
-.btn {
-    display: inline-block;
-    background-color: #3b7302;
-    color: white;
-    padding: 12px 25px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background-color: #2a5501;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
 /* Header Styles */
 header {
     background-color: rgba(255, 255, 255, 0.95);
@@ -165,9 +146,8 @@ nav ul li a:hover {
     transform: translateZ(-6px) scale(1.75);
 }
 
-/* Add styles for home and facilities sections */
-#home .content,
-#facilities .content {
+/* Add styles for home section */
+#home .content {
     position: relative;
     z-index: 2;
     width: 100%;
@@ -175,11 +155,10 @@ nav ul li a:hover {
     margin: 0 auto;
     padding: 40px;
     color: white;
-    background-color: rgba(0, 0, 0, 0.7);
-}
-
-/* Add specific styles for home section content */
-#home .content {
+    background-color: rgba(51, 51, 51, 0.5);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     text-align: center;
     display: flex;
     align-items: center;
@@ -199,7 +178,6 @@ nav ul li a:hover {
     position: relative;
     z-index: 2;
     padding: 100px 0;
-    margin-bottom: 100px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -209,16 +187,6 @@ nav ul li a:hover {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
-}
-
-#facilities {
-    position: relative;
-    margin-top: 100px;
-    padding-top: 100px;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    z-index: 1;
 }
 
 /* About Section Styles */
@@ -234,11 +202,91 @@ nav ul li a:hover {
     flex: 1;
 }
 
-.about-image {
+.about-carousel {
     flex: 1;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Carousel Styles */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    height: 100%;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.carousel-button:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.carousel-button.prev {
+    left: 10px;
+}
+
+.carousel-button.next {
+    right: 10px;
+}
+
+.carousel-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-dot.active {
+    background: white;
+    transform: scale(1.2);
 }
 
 /* Facilities Section Styles */
@@ -249,21 +297,50 @@ nav ul li a:hover {
     margin-top: 40px;
 }
 
-.facility-card {
-    background-color: rgba(255, 255, 255, 0.1);
+/* Services Section Styles */
+#services {
+    position: relative;
+    background: url('images/Barn\ Inside.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+}
+
+#services h2 {
+    color: white;
+}
+
+#services h2::after {
+    background-color: white;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.service-card {
+    background: rgba(255, 255, 255, 0.95);
     padding: 30px;
     border-radius: 10px;
     text-align: center;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 15px;
+    flex: 1;
+    min-width: 250px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.facility-card:hover {
+.service-card:hover {
     transform: translateY(-10px);
-    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-.facility-card i {
-    font-size: 3rem;
+.service-card i {
+    font-size: 2.5rem;
     color: #3b7302;
     margin-bottom: 20px;
     background-color: white;
@@ -271,48 +348,25 @@ nav ul li a:hover {
     height: 80px;
     line-height: 80px;
     border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 5px 15px rgba(59, 115, 2, 0.2);
 }
 
-/* Services Section Styles */
-#services {
-    background-color: white;
-    position: relative;
-    z-index: 1;
-    padding: 100px 0;
+.service-card h3 {
+    color: #3b7302;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
 }
 
-.services-wrapper {
-    margin-top: 50px;
-}
-
-.service-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 40px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-}
-
-.service-item:nth-child(even) {
-    flex-direction: row-reverse;
-}
-
-.service-item img {
-    width: 40%;
-    height: 300px;
-    object-fit: cover;
-}
-
-.service-info {
-    padding: 30px;
-    flex: 1;
+.service-card p {
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 0;
 }
 
 /* Contact Section Styles */
 #contact {
-    background-color: white;
+    background-color: #f5f8f2;  /* Light green tint */
     position: relative;
     z-index: 1;
     padding: 100px 0;
@@ -408,9 +462,9 @@ nav ul li a:hover {
 
 /* Footer Styles */
 footer {
-    background-color: #222;
+    background-color: #363d47;
     color: white;
-    padding: 20px 0;
+    padding: 10px 0;
     text-align: center;
 }
 
@@ -437,6 +491,10 @@ footer {
     
     .parallax-bg {
         height: 110%;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -468,6 +526,10 @@ footer {
     }
     
     .facilities-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .services-grid {
         grid-template-columns: 1fr;
     }
     

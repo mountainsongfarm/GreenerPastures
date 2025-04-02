@@ -22,16 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const translateY = (scrolled - top) * 0.4; // Reduced speed for smoother effect
                 const scale = 1.5 + Math.min(0.5, Math.max(0, progress * 0.2));
                 
-                // Apply different transform based on section
-                if (section.id === 'facilities') {
-                    // Fixed background effect for facilities section
-                    parallaxBg.style.transform = `translate3d(0, 0, -6px) scale(${1.75})`;
-                    parallaxBg.style.opacity = 0.8; // Slightly reduce opacity for better content visibility
-                } else {
-                    // Normal parallax effect for other sections
-                    parallaxBg.style.transform = `translate3d(0, ${translateY}px, -4px) scale(${scale})`;
-                    parallaxBg.style.opacity = 1;
-                }
+                // Apply transform for parallax effect
+                parallaxBg.style.transform = `translate3d(0, ${translateY}px, -4px) scale(${scale})`;
+                parallaxBg.style.opacity = 1;
                 
                 // Don't adjust section opacity for better content visibility
                 section.style.opacity = 1;
@@ -114,6 +107,79 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
+    // Carousel functionality
+    const track = document.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const nextButton = document.querySelector('.carousel-button.next');
+    const prevButton = document.querySelector('.carousel-button.prev');
+    const dotsContainer = document.querySelector('.carousel-dots');
+
+    // Create dots
+    slides.forEach((_, index) => {
+        const dot = document.createElement('button');
+        dot.classList.add('carousel-dot');
+        if (index === 0) dot.classList.add('active');
+        dotsContainer.appendChild(dot);
+    });
+
+    const dots = Array.from(dotsContainer.children);
+
+    // Set slide width
+    const slideWidth = slides[0].getBoundingClientRect().width;
+    slides.forEach((slide, index) => {
+        slide.style.left = slideWidth * index + 'px';
+    });
+
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+
+    // Function to move to slide
+    const moveToSlide = (index) => {
+        if (index < 0) index = totalSlides - 1;
+        if (index >= totalSlides) index = 0;
+        
+        track.style.transform = `translateX(-${slideWidth * index}px)`;
+        
+        // Update active dot
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[index].classList.add('active');
+        
+        currentSlide = index;
+    };
+
+    // Auto advance slides
+    let slideInterval = setInterval(() => {
+        moveToSlide(currentSlide + 1);
+    }, 5000);
+
+    // Event listeners for buttons
+    nextButton.addEventListener('click', () => {
+        clearInterval(slideInterval);
+        moveToSlide(currentSlide + 1);
+        slideInterval = setInterval(() => {
+            moveToSlide(currentSlide + 1);
+        }, 5000);
+    });
+
+    prevButton.addEventListener('click', () => {
+        clearInterval(slideInterval);
+        moveToSlide(currentSlide - 1);
+        slideInterval = setInterval(() => {
+            moveToSlide(currentSlide + 1);
+        }, 5000);
+    });
+
+    // Event listeners for dots
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            clearInterval(slideInterval);
+            moveToSlide(index);
+            slideInterval = setInterval(() => {
+                moveToSlide(currentSlide + 1);
+            }, 5000);
+        });
+    });
+
     // Smooth scrolling for navigation links
     document.querySelectorAll('nav a, a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {

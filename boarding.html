@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boarding Information - Mountain Song Farm</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background-image: url('images/Barn Garden.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .main-content {
+            padding-top: 100px; /* Space for fixed header */
+            padding-bottom: 40px;
+            min-height: calc(100vh - 140px);
+        }
+
+        .care-items {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .care-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .care-item i {
+            font-size: 24px;
+            margin-right: 15px;
+            color: #3b7302;
+            background: white;
+            padding: 10px;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .care-item h4 {
+            margin: 0;
+            color: white;
+            font-size: 1.1em;
+        }
+
+        .care-note {
+            font-size: 0.9em;
+            font-style: italic;
+            color: #cccccc;
+            margin-top: 5px;
+            margin-bottom: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(51, 51, 51, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 15px;
+        }
+
+        .container h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .care-items {
+                grid-template-columns: 1fr;
+            }
+            .main-content {
+                padding: 80px 20px 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Mountain Song Farm</div>
+        <nav>
+            <ul>
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="boarding.html">Boarding</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <h2>Custom Care Board</h2>
+            <div class="care-items">
+                <div class="care-item">
+                    <i class="fas fa-horse"></i>
+                    <div>
+                        <h4>Daily Turn In/Out</h4>
+                    </div>
+                </div>
+
+                <div class="care-item">
+                    <i class="fas fa-broom"></i>
+                    <div>
+                        <h4>Daily Stall Cleaning</h4>
+                    </div>
+                </div>
+
+                <div class="care-item">
+                    <i class="fas fa-wheat-awn"></i>
+                    <div>
+                        <h4>Pasture and Free Choice Hay</h4>
+                    </div>
+                </div>
+
+                <div class="care-item">
+                    <i class="fas fa-bowl-food"></i>
+                    <div>
+                        <h4>2-3x Daily Grain, Customized Feed Program</h4>
+                    </div>
+                </div>
+
+                <div class="care-item">
+                    <i class="fas fa-pills"></i>
+                    <div>
+                        <h4>Daily Medications and Supplements as Needed</h4>
+                        <p class="care-note">(Medications and supplements provided by or charged to owner)</p>
+                    </div>
+                </div>
+
+                <div class="care-item">
+                    <i class="fas fa-cube"></i>
+                    <div>
+                        <h4>Free Choice Salt/Minerals</h4>
+                    </div>
+                </div>
+
+                <div class="care-item">
+                    <i class="fas fa-shield-virus"></i>
+                    <div>
+                        <h4>Worming Spring and Fall</h4>
+                    </div>
+                </div>
+
+                <div class="care-item">
+                    <i class="fas fa-clipboard-check"></i>
+                    <div>
+                        <h4>Daily Body Condition Monitoring and Management</h4>
+                    </div>
+                </div>
+
+                <div class="care-item">
+                    <i class="fas fa-bug-slash"></i>
+                    <div>
+                        <h4>Daily Fly Management</h4>
+                    </div>
+                </div>
+
+                <div class="care-item">
+                    <i class="fas fa-blanket"></i>
+                    <div>
+                        <h4>Blanketing as Needed</h4>
+                    </div>
+                </div>
+
+                <div class="care-item">
+                    <i class="fas fa-brush"></i>
+                    <div>
+                        <h4>Twice Weekly Grooming and Bathing as Needed</h4>
+                        <p class="care-note">Additional grooming can be arranged upon request</p>
+                    </div>
+                </div>
+
+                <div class="care-item">
+                    <i class="fas fa-calendar-check"></i>
+                    <div>
+                        <h4>Scheduling and Holding for Vet and Farrier</h4>
+                        <p class="care-note">(Vet and farrier costs are owner's responsibility)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html> 

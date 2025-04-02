@@ -1,4 +1,4 @@
-# Greener Pastures Farm Website
+# Mountain Song Farm Website
 
 A static HTML, CSS, and JavaScript website for an equestrian facility. This website features:
 
@@ -50,4 +50,4 @@ To customize this website:
 
 ## Credits
 
-This website was created with plain HTML, CSS, and JavaScript. It uses images from the Greener Pastures repository. 
+This website was created with plain HTML, CSS, and JavaScript. It uses images from the MountainSongFarm repository. 
