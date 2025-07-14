@@ -50,6 +50,77 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle window resize
     window.addEventListener('resize', handleParallax);
     
+    // Video background handling
+    const videoBg = document.querySelector('.video-bg');
+    if (videoBg) {
+        let loopCount = 0;
+        const maxLoops = 2;
+        
+        // Show video when it can play
+        videoBg.addEventListener('canplay', () => {
+            videoBg.style.opacity = '1';
+        });
+        
+        // Handle video loop counting
+        videoBg.addEventListener('ended', () => {
+            loopCount++;
+            
+            if (loopCount < maxLoops) {
+                // Continue looping
+                videoBg.currentTime = 0;
+                videoBg.play();
+            } else {
+                // After 2 loops, replace video with Horse.jpg still image
+                videoBg.style.opacity = '0';
+                
+                // Create background image element
+                const stillImage = document.createElement('div');
+                stillImage.className = 'parallax-bg still-image';
+                stillImage.style.backgroundImage = "url('images/Barn Garden.jpeg')";
+                stillImage.style.backgroundSize = 'cover';
+                stillImage.style.backgroundPosition = 'center center';
+                stillImage.style.backgroundRepeat = 'no-repeat';
+                stillImage.style.opacity = '0';
+                stillImage.style.transition = 'opacity 0.5s ease-in-out';
+                
+                // Insert the still image
+                videoBg.parentNode.insertBefore(stillImage, videoBg);
+                
+                // Fade in the still image
+                setTimeout(() => {
+                    stillImage.style.opacity = '1';
+                }, 100);
+                
+                // Hide the video after fade
+                setTimeout(() => {
+                    videoBg.style.display = 'none';
+                }, 600);
+            }
+        });
+        
+        // Remove the loop attribute since we're handling it manually
+        videoBg.removeAttribute('loop');
+        
+        // Handle video loading errors - show fallback image
+        videoBg.addEventListener('error', () => {
+            videoBg.style.display = 'none';
+            const fallbackBg = videoBg.nextElementSibling;
+            if (fallbackBg) {
+                fallbackBg.style.display = 'block';
+            }
+        });
+        
+        // Ensure video starts playing
+        videoBg.play().catch(() => {
+            // If autoplay fails, show fallback image
+            videoBg.style.display = 'none';
+            const fallbackBg = videoBg.nextElementSibling;
+            if (fallbackBg) {
+                fallbackBg.style.display = 'block';
+            }
+        });
+    }
+    
     // Sticky header
     const header = document.querySelector('header');
     
@@ -107,78 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Carousel functionality
-    const track = document.querySelector('.carousel-track');
-    const slides = Array.from(track.children);
-    const nextButton = document.querySelector('.carousel-button.next');
-    const prevButton = document.querySelector('.carousel-button.prev');
-    const dotsContainer = document.querySelector('.carousel-dots');
 
-    // Create dots
-    slides.forEach((_, index) => {
-        const dot = document.createElement('button');
-        dot.classList.add('carousel-dot');
-        if (index === 0) dot.classList.add('active');
-        dotsContainer.appendChild(dot);
-    });
-
-    const dots = Array.from(dotsContainer.children);
-
-    // Set slide width
-    const slideWidth = slides[0].getBoundingClientRect().width;
-    slides.forEach((slide, index) => {
-        slide.style.left = slideWidth * index + 'px';
-    });
-
-    let currentSlide = 0;
-    const totalSlides = slides.length;
-
-    // Function to move to slide
-    const moveToSlide = (index) => {
-        if (index < 0) index = totalSlides - 1;
-        if (index >= totalSlides) index = 0;
-        
-        track.style.transform = `translateX(-${slideWidth * index}px)`;
-        
-        // Update active dot
-        dots.forEach(dot => dot.classList.remove('active'));
-        dots[index].classList.add('active');
-        
-        currentSlide = index;
-    };
-
-    // Auto advance slides
-    let slideInterval = setInterval(() => {
-        moveToSlide(currentSlide + 1);
-    }, 5000);
-
-    // Event listeners for buttons
-    nextButton.addEventListener('click', () => {
-        clearInterval(slideInterval);
-        moveToSlide(currentSlide + 1);
-        slideInterval = setInterval(() => {
-            moveToSlide(currentSlide + 1);
-        }, 5000);
-    });
-
-    prevButton.addEventListener('click', () => {
-        clearInterval(slideInterval);
-        moveToSlide(currentSlide - 1);
-        slideInterval = setInterval(() => {
-            moveToSlide(currentSlide + 1);
-        }, 5000);
-    });
-
-    // Event listeners for dots
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            clearInterval(slideInterval);
-            moveToSlide(index);
-            slideInterval = setInterval(() => {
-                moveToSlide(currentSlide + 1);
-            }, 5000);
-        });
-    });
 
     // Smooth scrolling for navigation links
     document.querySelectorAll('nav a, a[href^="#"]').forEach(anchor => {

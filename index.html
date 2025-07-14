@@ -9,12 +9,12 @@
 </head>
 <body>
     <header>
-        <div class="logo">Mountain Song Farm</div>
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="boarding.html">Boarding</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -22,10 +22,16 @@
 
     <!-- First Parallax Section -->
     <section id="home" class="parallax-section">
-        <div class="parallax-bg" style="background-image: url('images/Birds\ Eye.jpeg');"></div>
+        <video class="parallax-bg video-bg" autoplay muted playsinline>
+            <source src="images/IMG_6394.mov" type="video/mp4">
+            <!-- Fallback background image if video fails to load -->
+            <div class="parallax-bg" style="background-image: url('images/Birds\ Eye.jpeg');"></div>
+        </video>
         <div class="content">
             <div class="container">
-                <h1>Welcome to Mountain Song Farm</h1>
+                <div class="hero-logo">
+                    <img src="images/Mountain Song Farm Web Logo.svg" alt="Mountain Song Farm" class="hero-logo-img">
+                </div>
                 <p>Excellence in horse care is our passion</p>
             </div>
         </div>
@@ -41,59 +47,8 @@
                     <p>Horses needs fluctuate, just like our own.  We take holistic horse health seriously and understand that a healthy horse includes a healthy mind.  We allow our horses plenty of pasture time for socializing with carefully chosen pasture mates to create the most stimulating environment for each horse.  
                         Our pristine farm abuts miles of beautiful and quiet trails.  We are equipped with a state of the art, large indoor arena with dust free footing that our boarders can utilize year round. Our facilities are designed to cater to the individual needs of each horse, specializing in creating customized care plans for retired and senior horses.</p>
                 </div>
-                <div class="about-carousel">
-                    <div class="carousel-container">
-                        <div class="carousel-track">
-                            <div class="carousel-slide">
-                                <img src="images/Birds Eye Pastures.jpeg" alt="Birds Eye View">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="images/Barn Garden.jpeg" alt="Barn Garden">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="images/Barn Snow 2.jpeg" alt="Barn in Snow">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="images/Barn Inside.jpeg" alt="Inside Barn">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="images/Stable.jpeg" alt="Stable">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="images/Stable Inside.jpeg" alt="Inside Stable">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="images/Birds Eye.jpeg" alt="Birds Eye View">
-                            </div>
-                        </div>
-                        <button class="carousel-button prev">&#10094;</button>
-                        <button class="carousel-button next">&#10095;</button>
-                        <div class="carousel-dots"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="content-section">
-        <div class="container">
-            <h2>Our Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <i class="fas fa-horse"></i>
-                    <h3>Grooming</h3>
-                    <p>Hoof Care, Bathing, Mane and Tail Care</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-bandage"></i>
-                    <h3>Exercise/Rehabilitation</h3>
-                    <p>Custom Rehabilitative Programs, Hand Walking, Riding, Lunging, and Liberty Exercise</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-heart"></i>
-                    <h3>Treatment</h3>
-                    <p>Holisitc Care including Body Work, Massage, Acupuncture, Chiropractic, and PEMF Therapy.</p>
+                <div class="about-image">
+                    <img src="images/Birds Eye.jpeg" alt="Birds Eye View">
                 </div>
             </div>
         </div>
@@ -103,29 +58,23 @@
     <section id="contact" class="content-section">
         <div class="container">
             <h2>Contact Us</h2>
-            <div class="contact-wrapper">
-                <div class="contact-info">
-                    <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <p>45 Art School Road, Monterey, MA 01245</p>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-phone"></i>
-                        <p>(555) 123-4567</p>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-envelope"></i>
-                        <p>info@mountainsongfarm.com</p>
-                    </div>
-                    <div class="social-media">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
+            <div class="contact-info">
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>45 Art School Road, Monterey, MA 01245</p>
                 </div>
-                <div class="contact-image">
-                    <img src="images/Tess.jpg" alt="Director Tess Fedell">
-                    <h3>Director Tess Fedell</h3>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <p>(555) 123-4567</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>info@mountainsongfarm.com</p>
+                </div>
+                <div class="social-media">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
         </div>
