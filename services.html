@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Mountain Song Farm</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background-image: url('images/Stable.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .main-content {
+            padding-top: 100px;
+            padding-bottom: 40px;
+            min-height: calc(100vh - 140px);
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 50px;
+            background-color: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 15px;
+            padding: 30px 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services-header h2 {
+            color: #333;
+        }
+
+        .services-header p {
+            color: #555;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 20px auto 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-card i {
+            font-size: 2.5rem;
+            color: #3b7302;
+            margin-bottom: 20px;
+            background-color: #f5f8f2;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(59, 115, 2, 0.15);
+        }
+
+        .service-card h3 {
+            color: #3b7302;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        .service-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 12px;
+            text-align: left;
+        }
+
+        .service-card ul li {
+            padding: 6px 0;
+            color: #555;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.95rem;
+        }
+
+        .service-card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .service-card ul li::before {
+            content: "✓ ";
+            color: #3b7302;
+            font-weight: 600;
+        }
+
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                background-image: url('images/Pastures.jpg');
+            }
+            .main-content {
+                padding: 80px 20px 40px;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .services-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="boarding.html">Boarding</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="services-container">
+            <div class="services-header">
+                <h2>Our Services</h2>
+                <p>Beyond daily boarding care, we offer specialized services tailored to your horse's individual needs.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-horse"></i>
+                    <h3>Grooming</h3>
+                    <p>Comprehensive grooming to keep your horse looking and feeling their best.</p>
+                    <ul>
+                        <li>Hoof Care</li>
+                        <li>Bathing</li>
+                        <li>Mane and Tail Care</li>
+                        <li>Clipping</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-dumbbell"></i>
+                    <h3>Exercise &amp; Rehabilitation</h3>
+                    <p>Custom programs designed around your horse's fitness level and recovery goals.</p>
+                    <ul>
+                        <li>Custom Rehabilitative Programs</li>
+                        <li>Hand Walking</li>
+                        <li>Riding</li>
+                        <li>Lunging</li>
+                        <li>Liberty Exercise</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Holistic Treatment</h3>
+                    <p>Integrated therapeutic care to support your horse's overall well-being.</p>
+                    <ul>
+                        <li>Body Work</li>
+                        <li>Massage</li>
+                        <li>Acupuncture</li>
+                        <li>Chiropractic</li>
+                        <li>PEMF Therapy</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Mountain Song Farm. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

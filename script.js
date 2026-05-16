@@ -1,41 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Enhanced Parallax scrolling effect
+    // Gentle parallax — background moves slower than scroll
     function handleParallax() {
-        const parallaxSections = document.querySelectorAll('.parallax-section');
-        const scrolled = window.pageYOffset;
-        const windowHeight = window.innerHeight;
-        
-        parallaxSections.forEach((section) => {
-            const top = section.offsetTop;
-            const height = section.offsetHeight;
-            const sectionDistance = top - scrolled;
-            const viewportBottom = scrolled + windowHeight;
-            
-            // Check if section is in viewport or near it
-            if (sectionDistance < windowHeight && sectionDistance > -height) {
-                const parallaxBg = section.querySelector('.parallax-bg');
-                
-                // Calculate the relative position of the section in the viewport
-                const progress = (viewportBottom - top) / (windowHeight + height);
-                
-                // Create a more dramatic parallax effect
-                const translateY = (scrolled - top) * 0.4; // Reduced speed for smoother effect
-                const scale = 1.5 + Math.min(0.5, Math.max(0, progress * 0.2));
-                
-                // Apply transform for parallax effect
-                parallaxBg.style.transform = `translate3d(0, ${translateY}px, -4px) scale(${scale})`;
-                parallaxBg.style.opacity = 1;
-                
-                // Don't adjust section opacity for better content visibility
-                section.style.opacity = 1;
-            }
+        const sections = document.querySelectorAll('.parallax-section');
+        const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+        sections.forEach((section) => {
+            const bg = section.querySelector('.parallax-bg');
+            if (!bg) return;
+
+            const rect = section.getBoundingClientRect();
+            const sectionTop = rect.top + scrollY;
+            const sectionHeight = section.offsetHeight;
+
+            // How far through this section we've scrolled (0 at top, 1 when section leaves)
+            const progress = (scrollY - sectionTop) / sectionHeight;
+
+            // Move background from -20% to 0% of section height over the scroll
+            const maxTravel = sectionHeight * 0.2;
+            const offset = -maxTravel + (progress * maxTravel);
+
+            bg.style.transform = `translate3d(0, ${offset}px, 0)`;
         });
     }
 
-    // Initialize parallax
-    handleParallax();
-    
-    // Add scroll event listener with throttling for performance
     let ticking = false;
     window.addEventListener('scroll', () => {
         if (!ticking) {
@@ -46,80 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
             ticking = true;
         }
     });
+
+    handleParallax();
     
-    // Handle window resize
-    window.addEventListener('resize', handleParallax);
-    
-    // Video background handling
-    const videoBg = document.querySelector('.video-bg');
-    if (videoBg) {
-        let loopCount = 0;
-        const maxLoops = 2;
-        
-        // Show video when it can play
-        videoBg.addEventListener('canplay', () => {
-            videoBg.style.opacity = '1';
-        });
-        
-        // Handle video loop counting
-        videoBg.addEventListener('ended', () => {
-            loopCount++;
-            
-            if (loopCount < maxLoops) {
-                // Continue looping
-                videoBg.currentTime = 0;
-                videoBg.play();
-            } else {
-                // After 2 loops, replace video with Horse.jpg still image
-                videoBg.style.opacity = '0';
-                
-                // Create background image element
-                const stillImage = document.createElement('div');
-                stillImage.className = 'parallax-bg still-image';
-                stillImage.style.backgroundImage = "url('images/Barn Garden.jpeg')";
-                stillImage.style.backgroundSize = 'cover';
-                stillImage.style.backgroundPosition = 'center center';
-                stillImage.style.backgroundRepeat = 'no-repeat';
-                stillImage.style.opacity = '0';
-                stillImage.style.transition = 'opacity 0.5s ease-in-out';
-                
-                // Insert the still image
-                videoBg.parentNode.insertBefore(stillImage, videoBg);
-                
-                // Fade in the still image
-                setTimeout(() => {
-                    stillImage.style.opacity = '1';
-                }, 100);
-                
-                // Hide the video after fade
-                setTimeout(() => {
-                    videoBg.style.display = 'none';
-                }, 600);
-            }
-        });
-        
-        // Remove the loop attribute since we're handling it manually
-        videoBg.removeAttribute('loop');
-        
-        // Handle video loading errors - show fallback image
-        videoBg.addEventListener('error', () => {
-            videoBg.style.display = 'none';
-            const fallbackBg = videoBg.nextElementSibling;
-            if (fallbackBg) {
-                fallbackBg.style.display = 'block';
-            }
-        });
-        
-        // Ensure video starts playing
-        videoBg.play().catch(() => {
-            // If autoplay fails, show fallback image
-            videoBg.style.display = 'none';
-            const fallbackBg = videoBg.nextElementSibling;
-            if (fallbackBg) {
-                fallbackBg.style.display = 'block';
-            }
-        });
-    }
     
     // Sticky header
     const header = document.querySelector('header');
@@ -180,14 +96,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
 
 
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('nav a, a[href^="#"]').forEach(anchor => {
+    // Smooth scrolling for in-page anchor links only
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
             const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
             const targetElement = document.querySelector(targetId);
-            
             if (targetElement) {
+                e.preventDefault();
                 targetElement.scrollIntoView({
                     behavior: 'smooth'
                 });

@@ -125,7 +125,7 @@
         .image-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(3, 200px);
+            grid-auto-rows: 200px;
             gap: 15px;
             max-width: 900px;
             width: 100%;
@@ -156,7 +156,7 @@
             transform: scale(1.05);
         }
 
-        /* Create interesting layout with different sized items */
+        /* Create interesting layout with varied sized items */
         .grid-item:nth-child(1) { grid-column: 1; grid-row: 1; }
         .grid-item:nth-child(2) { grid-column: 2 / 4; grid-row: 1; }
         .grid-item:nth-child(3) { grid-column: 1; grid-row: 2; }
@@ -164,6 +164,15 @@
         .grid-item:nth-child(5) { grid-column: 3; grid-row: 2; }
         .grid-item:nth-child(6) { grid-column: 1 / 3; grid-row: 3; }
         .grid-item:nth-child(7) { grid-column: 3; grid-row: 3; }
+        .grid-item:nth-child(8) { grid-column: 1; grid-row: 4; }
+        .grid-item:nth-child(9) { grid-column: 2 / 4; grid-row: 4; }
+        .grid-item:nth-child(10) { grid-column: 1 / 3; grid-row: 5; }
+        .grid-item:nth-child(11) { grid-column: 3; grid-row: 5; }
+        .grid-item:nth-child(12) { grid-column: 1; grid-row: 6; }
+        .grid-item:nth-child(13) { grid-column: 2; grid-row: 6; }
+        .grid-item:nth-child(14) { grid-column: 3; grid-row: 6; }
+        .grid-item:nth-child(15) { grid-column: 1 / 3; grid-row: 7; }
+        .grid-item:nth-child(16) { grid-column: 3; grid-row: 7; }
 
         @media (max-width: 768px) {
             .large-carousel-container {
@@ -172,18 +181,15 @@
 
             .image-grid {
                 grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: repeat(4, 150px);
+                grid-auto-rows: 150px;
                 gap: 10px;
                 max-width: 500px;
             }
 
-            .grid-item:nth-child(1) { grid-column: 1; grid-row: 1; }
-            .grid-item:nth-child(2) { grid-column: 2; grid-row: 1; }
-            .grid-item:nth-child(3) { grid-column: 1; grid-row: 2; }
-            .grid-item:nth-child(4) { grid-column: 2; grid-row: 2; }
-            .grid-item:nth-child(5) { grid-column: 1; grid-row: 3; }
-            .grid-item:nth-child(6) { grid-column: 2; grid-row: 3; }
-            .grid-item:nth-child(7) { grid-column: 1 / 3; grid-row: 4; }
+            .grid-item:nth-child(n) {
+                grid-column: auto;
+                grid-row: auto;
+            }
         }
     </style>
 </head>
@@ -194,7 +200,8 @@
                 <li><a href="index.html#home">Home</a></li>
                 <li><a href="index.html#about">About</a></li>
                 <li><a href="boarding.html">Boarding</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="gallery.html" class="active">Gallery</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
         </nav>
@@ -231,6 +238,30 @@
                         <div class="large-carousel-slide">
                             <img src="images/Dusk.jpg" alt="Farm at Dusk">
                         </div>
+                        <div class="large-carousel-slide">
+                            <img src="images/Barn1.jpg" alt="Barn Aisle">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="images/BarnIndoor2.JPG" alt="Barn Stalls">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="images/Grazing.jpg" alt="Horse Grazing">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="images/Pastures.jpg" alt="Pastures">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="images/Saying Hi.jpg" alt="Horses Saying Hi">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="images/Two Horses Laying.jpg" alt="Two Horses Laying">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="images/E287CACF-CAAA-4E40-AB49-EC5FA0C34F20.jpg" alt="Horse in Blanket">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="images/FDEC18B0-3D06-4EFD-A7B2-69B035036CF6.jpg" alt="Horses in Winter">
+                        </div>
                     </div>
                     <button class="large-carousel-button prev">&#10094;</button>
                     <button class="large-carousel-button next">&#10095;</button>
@@ -262,6 +293,30 @@
                         </div>
                         <div class="grid-item">
                             <img src="images/Barn Garden.jpeg" alt="Barn Garden">
+                        </div>
+                        <div class="grid-item">
+                            <img src="images/Barn1.jpg" alt="Barn Aisle">
+                        </div>
+                        <div class="grid-item">
+                            <img src="images/BarnIndoor2.JPG" alt="Barn Stalls">
+                        </div>
+                        <div class="grid-item">
+                            <img src="images/Grazing.jpg" alt="Horse Grazing">
+                        </div>
+                        <div class="grid-item">
+                            <img src="images/Pastures.jpg" alt="Pastures">
+                        </div>
+                        <div class="grid-item">
+                            <img src="images/Saying Hi.jpg" alt="Horses Saying Hi">
+                        </div>
+                        <div class="grid-item">
+                            <img src="images/Two Horses Laying.jpg" alt="Two Horses Laying">
+                        </div>
+                        <div class="grid-item">
+                            <img src="images/E287CACF-CAAA-4E40-AB49-EC5FA0C34F20.jpg" alt="Horse in Blanket">
+                        </div>
+                        <div class="grid-item">
+                            <img src="images/FDEC18B0-3D06-4EFD-A7B2-69B035036CF6.jpg" alt="Horses in Winter">
                         </div>
                     </div>
                 </div>

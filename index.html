@@ -6,14 +6,25 @@
     <title>Mountain Song Farm</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        #home .parallax-bg {
+            background-image: url('images/Barn Pond.jpg');
+        }
+        @media screen and (max-width: 768px) {
+            #home .parallax-bg {
+                background-image: url('images/Birdseye.jpg');
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav>
             <ul>
-                <li><a href="#home">Home</a></li>
+                <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="boarding.html">Boarding</a></li>
+                <li><a href="services.html">Services</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -22,15 +33,11 @@
 
     <!-- First Parallax Section -->
     <section id="home" class="parallax-section">
-        <video class="parallax-bg video-bg" autoplay muted playsinline>
-            <source src="images/IMG_6394.mov" type="video/mp4">
-            <!-- Fallback background image if video fails to load -->
-            <div class="parallax-bg" style="background-image: url('images/Birds\ Eye.jpeg');"></div>
-        </video>
+        <div class="parallax-bg"></div>
         <div class="content">
             <div class="container">
                 <div class="hero-logo">
-                    <img src="images/Mountain Song Farm Web Logo.svg" alt="Mountain Song Farm" class="hero-logo-img">
+                    <img src="images/logo.png" alt="Mountain Song Farm" class="hero-logo-img">
                 </div>
                 <p>Excellence in horse care is our passion</p>
             </div>
@@ -44,8 +51,8 @@
             <div class="about-content">
                 <div class="about-text">
                     <p>At Mountain Song Farm we understand that a horse is much more than a pet: they are companions, partners, and often the loves of our lives.  Our standard of care is designed with this in mind.  Horse owners can rest assured that in our care the comfort, happiness and well being of their horse are paramount. It is our mission to provide the ideal custom care for every horse. </p>
-                    <p>Horses needs fluctuate, just like our own.  We take holistic horse health seriously and understand that a healthy horse includes a healthy mind.  We allow our horses plenty of pasture time for socializing with carefully chosen pasture mates to create the most stimulating environment for each horse.  
-                        Our pristine farm abuts miles of beautiful and quiet trails.  We are equipped with a state of the art, large indoor arena with dust free footing that our boarders can utilize year round. Our facilities are designed to cater to the individual needs of each horse, specializing in creating customized care plans for retired and senior horses.</p>
+                    <p>Horses needs fluctuate, just like our own.  We take holistic horse health seriously and understand that a healthy horse includes a healthy mind.  We allow our horses plenty of pasture time for socializing with carefully chosen pasture mates to create the most stimulating and healthy environment for each horse.  
+                        Our pristine farm abuts miles of beautiful and quiet trails.  We are equipped with a state of the art, large indoor arena with dust free footing that our boarders can utilize year round. Our facilities are designed to cater to the individual needs of each horse, specializing in creating customized care plans.</p>
                 </div>
                 <div class="about-image">
                     <img src="images/Birds Eye.jpeg" alt="Birds Eye View">
@@ -65,16 +72,15 @@
                 </div>
                 <div class="info-item">
                     <i class="fas fa-phone"></i>
-                    <p>(555) 123-4567</p>
+                    <p>(413) 854-3228</p>
                 </div>
                 <div class="info-item">
                     <i class="fas fa-envelope"></i>
-                    <p>info@mountainsongfarm.com</p>
+                    <p>t.mountainsongfarm@gmail.com</p>
                 </div>
                 <div class="social-media">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.facebook.com/p/Mountain-Song-Farm-61575498506241/" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/mountain_song_farm/" target="_blank"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
