@@ -60,6 +60,8 @@ img {
     max-width: 100%;
     height: auto;
     display: block;
+    content-visibility: auto;
+    image-rendering: auto;
 }
 
 /* Header Styles */
@@ -143,6 +145,7 @@ header {
 .hero-logo-img {
     height: 200px;
     width: auto;
+    max-width: 100%;
     margin: 0;
     padding: 0;
 }
@@ -568,9 +571,15 @@ footer {
     }
 
     #home .content {
-        width: 60%;
+        width: 70%;
         max-width: none;
         padding: 15px;
+    }
+
+    .hero-logo-img {
+        height: auto;
+        width: 100%;
+        max-width: 250px;
     }
 
     .facilities-grid {

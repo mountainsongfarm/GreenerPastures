@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mountain Song Farm</title>
+    <link rel="preload" href="images/Barn Garden.jpeg" as="image">
+    <link rel="preload" href="images/Logo.png" as="image">
+    <link rel="preload" href="images/Birds Eye.jpeg" as="image">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -45,7 +48,7 @@
         <div class="content">
             <div class="container">
                 <div class="hero-logo">
-                    <img src="images/Logo.png" alt="Mountain Song Farm" class="hero-logo-img">
+                    <img src="images/Logo.png" alt="Mountain Song Farm" class="hero-logo-img" loading="eager" decoding="async" fetchpriority="high">
                 </div>
                 <p>Excellence in horse care is our passion</p>
             </div>
@@ -63,7 +66,7 @@
                         Our pristine farm abuts miles of beautiful and quiet trails.  We are equipped with a state of the art, large indoor arena with dust free footing that our boarders can utilize year round. Our facilities are designed to cater to the individual needs of each horse, specializing in creating customized care plans.</p>
                 </div>
                 <div class="about-image">
-                    <img src="images/Birds Eye.jpeg" alt="Birds Eye View">
+                    <img src="images/Birds Eye.jpeg" alt="Birds Eye View" loading="lazy" decoding="async">
                 </div>
             </div>
         </div>
