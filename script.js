@@ -37,18 +37,44 @@ document.addEventListener('DOMContentLoaded', () => {
     handleParallax();
     
     
-    // Sticky header
-    const header = document.querySelector('header');
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+    // Header logo visibility — show when hero is scrolled past (home page only)
+    const headerLogo = document.querySelector('.header-logo');
+    const heroSection = document.querySelector('#home');
+
+    function updateHeaderLogo() {
+        if (!headerLogo) return;
+        // On non-home pages, logo is always visible (class set in HTML)
+        if (!heroSection) return;
+        // On home page, show after scrolling past hero
+        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+        if (window.scrollY > heroBottom - 100) {
+            headerLogo.classList.add('visible');
         } else {
-            header.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
-            header.style.boxShadow = 'none';
+            headerLogo.classList.remove('visible');
         }
-    });
+    }
+
+    window.addEventListener('scroll', updateHeaderLogo);
+    updateHeaderLogo();
+
+    // Hamburger menu toggle
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('nav');
+
+    if (hamburger && nav) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            nav.classList.toggle('open');
+        });
+
+        // Close menu when a link is clicked
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                nav.classList.remove('open');
+            });
+        });
+    }
     
     // Form submission
     const contactForm = document.querySelector('.contact-form form');
