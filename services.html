@@ -65,12 +65,11 @@
             border-radius: 12px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            transform: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .service-card i {
@@ -122,6 +121,80 @@
             font-weight: 600;
         }
 
+        .offering {
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+        }
+
+        .offering:last-child {
+            border-bottom: none;
+        }
+
+        .offering summary {
+            cursor: pointer;
+            font-weight: 500;
+            color: #333;
+            font-size: 0.95rem;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .offering summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .offering summary::after {
+            content: "▸";
+            color: #3b7302;
+            font-size: 1rem;
+            transition: transform 0.2s ease;
+        }
+
+        .offering[open] summary::after {
+            transform: rotate(90deg);
+        }
+
+        .offering .price {
+            color: #3b7302;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .offering .details-content {
+            margin-top: 10px;
+            padding: 10px 12px;
+            background: #f9fbf7;
+            border-radius: 6px;
+            color: #555;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                max-height: 0;
+                transform: translateY(-5px);
+            }
+            to {
+                opacity: 1;
+                max-height: 500px;
+                transform: translateY(0);
+            }
+        }
+
+        .offering .details-content p {
+            margin-bottom: 8px;
+        }
+
+        .offering .details-content p:last-child {
+            margin-bottom: 0;
+        }
+
         @media (max-width: 768px) {
             body {
                 background-image: url('images/Pastures.jpg');
@@ -162,14 +235,41 @@
         <div class="services-container">
             <div class="services-header">
                 <h2>Our Services</h2>
-                <p>Beyond daily boarding care, we offer specialized services tailored to your horse's individual needs.</p>
+                <p>Beyond daily boarding care, we offer specialized services tailored to your horse's individual needs. Contact barn manager for arrangement.</p>
             </div>
 
             <div class="services-grid">
                 <div class="service-card">
                     <i class="fas fa-horse"></i>
-                    <h3>Grooming</h3>
-                    <p>Comprehensive grooming to keep your horse looking and feeling their best.</p>
+                    <h3>Grooming &amp; Wellness</h3>
+
+                    <details class="offering">
+                        <summary>Essential Oil Body Rub</summary>
+                        <div class="details-content">
+                            <p class="price">$50</p>
+                            <p>This treatment includes a full grooming and all over body rub using a MSF peppermint and lavender essential oil blend in a coat conditioning rice bran oil base.</p>
+                            <p>Top tier pampering for calming and relaxation!</p>
+                        </div>
+                    </details>
+
+                    <details class="offering">
+                        <summary>Bentonite Clay Mud Mask (30 min)</summary>
+                        <div class="details-content">
+                            <p class="price">$45</p>
+                            <p>This treatment includes gentle massage of all four legs with a bentonite clay mask followed by a moisturizing MSF herbal salve application.</p>
+                            <p>Bentonite clay is renowned for its many benefits to humans and horses alike. Loaded with natural minerals, it is known to reduce inflammation, increase circulation, draw out heat and excess fluids and toxins, while having a cooling effect for tendons and joints.</p>
+                            <p>Wonderful as preventative maintenance or before or after exercise.</p>
+                        </div>
+                    </details>
+
+                    <details class="offering">
+                        <summary>Epsom Salt Herbal Hoof/Leg Soak</summary>
+                        <div class="details-content">
+                            <p class="price">$25</p>
+                            <p>By veterinarian prescription or for extra pampering, epsom salt and peppermint oil draw out toxins and impurities. Twenty minute warm soak.</p>
+                        </div>
+                    </details>
+
                     <ul>
                         <li>Hoof Care</li>
                         <li>Bathing</li>
@@ -180,26 +280,54 @@
 
                 <div class="service-card">
                     <i class="fas fa-dumbbell"></i>
-                    <h3>Exercise &amp; Rehabilitation</h3>
-                    <p>Custom programs designed around your horse's fitness level and recovery goals.</p>
+                    <h3>Exercise &amp; Training</h3>
+
+                    <details class="offering">
+                        <summary>Groundwork &amp; Handling (1 hr)</summary>
+                        <div class="details-content">
+                            <p class="price">$70</p>
+                            <p>This includes positive reinforcement exercises for leading without stress, learning gentle release in all directions, hoof handling (farriers appreciate it!), and overall maintenance of ground manners.</p>
+                        </div>
+                    </details>
+
+                    <details class="offering">
+                        <summary>Liberty Round Pen Session (30 min)</summary>
+                        <div class="details-content">
+                            <p class="price">$45</p>
+                            <p>During a liberty session we will work at liberty (no halter or rope) with your horse to establish trust and understanding of body language. This creates a beautiful foundation for meaningful connections with your horse.</p>
+                            <p>Owners may participate as a lesson, +$15.</p>
+                        </div>
+                    </details>
+
                     <ul>
                         <li>Custom Rehabilitative Programs</li>
                         <li>Hand Walking</li>
                         <li>Riding</li>
                         <li>Lunging</li>
-                        <li>Liberty Exercise</li>
                     </ul>
                 </div>
 
                 <div class="service-card">
                     <i class="fas fa-heart"></i>
                     <h3>Holistic Treatment</h3>
-                    <p>Integrated therapeutic care to support your horse's overall well-being.</p>
+
+                    <details class="offering">
+                        <summary>Acupuncture</summary>
+                        <div class="details-content">
+                            <p>Acupuncture offers many healing benefits to both humans and horses. Appointments can be arranged with our acupuncture certified veterinarian.</p>
+                        </div>
+                    </details>
+
+                    <details class="offering">
+                        <summary>Chiropractor</summary>
+                        <div class="details-content">
+                            <p>Chiropractic care for horses can be incredibly beneficial for horse's musculoskeletal systems. It is used to maintain overall health as well as to help relieve pain and keep the body aligned properly. Appointments can be arranged with our chiropractic certified veterinarian.</p>
+                        </div>
+                    </details>
+
                     <ul>
                         <li>Body Work</li>
                         <li>Massage</li>
-                        <li>Acupuncture</li>
-                        <li>Chiropractic</li>
                         <li>PEMF Therapy</li>
                     </ul>
                 </div>
@@ -209,9 +337,23 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Mountain Song Farm. All Rights Reserved.</p>
+            <p>&copy; 2026 Mountain Song Farm. All Rights Reserved.</p>
         </div>
     </footer>
+    <script>
+        document.querySelectorAll('.service-card').forEach(card => {
+            const offerings = card.querySelectorAll('.offering');
+            offerings.forEach(offering => {
+                offering.addEventListener('toggle', () => {
+                    if (offering.open) {
+                        offerings.forEach(other => {
+                            if (other !== offering) other.removeAttribute('open');
+                        });
+                    }
+                });
+            });
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
