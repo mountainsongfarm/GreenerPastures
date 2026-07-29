@@ -3,17 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services - Mountain Song Farm</title>
+    <title>Equine Services — Grooming, Training &amp; Holistic Care | Mountain Song Farm</title>
+    <meta name="description" content="Equine services at Mountain Song Farm in Monterey, MA: grooming &amp; wellness, exercise &amp; training, and holistic treatment tailored to each horse.">
+    <link rel="canonical" href="https://mountainsongfarm.com/services.html">
+    <meta name="theme-color" content="#3b7302">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <!-- Open Graph / social sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Mountain Song Farm">
+    <meta property="og:title" content="Equine Services — Grooming, Training &amp; Holistic Care | Mountain Song Farm">
+    <meta property="og:description" content="Grooming &amp; wellness, exercise &amp; training, and holistic equine treatment in Monterey, MA.">
+    <meta property="og:url" content="https://mountainsongfarm.com/services.html">
+    <meta property="og:image" content="https://mountainsongfarm.com/images/Stable.jpeg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Equine Services — Grooming, Training &amp; Holistic Care | Mountain Song Farm">
+    <meta name="twitter:description" content="Grooming &amp; wellness, exercise &amp; training, and holistic equine treatment in Monterey, MA.">
+    <meta name="twitter:image" content="https://mountainsongfarm.com/images/Stable.jpeg">
+
     <link rel="preload" href="images/Stable.jpeg" as="image">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
+            min-height: 100vh;
+        }
+
+        /* Fixed background layer — same "stays put" effect as background-attachment:fixed
+           but without the per-scroll repaint jank (also fixes iOS Safari) */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
             background-image: url('images/Stable.jpeg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
-            min-height: 100vh;
+            z-index: -1;
         }
 
         .main-content {
@@ -234,6 +263,7 @@
     <main class="main-content">
         <div class="services-container">
             <div class="services-header">
+                <h1 class="sr-only">Equine Services at Mountain Song Farm — Grooming, Training &amp; Holistic Care in Monterey, MA</h1>
                 <h2>Our Services</h2>
                 <p>Beyond daily boarding care, we offer specialized services tailored to your horse's individual needs. Contact barn manager for arrangement.</p>
             </div>
