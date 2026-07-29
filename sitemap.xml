@@ -5,15 +5,15 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://mountainsongfarm.com/boarding.html</loc>
+    <loc>https://mountainsongfarm.com/boarding</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mountainsongfarm.com/services.html</loc>
+    <loc>https://mountainsongfarm.com/services</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mountainsongfarm.com/gallery.html</loc>
+    <loc>https://mountainsongfarm.com/gallery</loc>
     <priority>0.6</priority>
   </url>
 </urlset>
