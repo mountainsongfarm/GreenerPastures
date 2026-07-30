@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery | Mountain Song Farm — Monterey, MA</title>
+    <meta name="description" content="Photo gallery of Mountain Song Farm: our barn, pastures, indoor arena, and horses in Monterey, MA, in the Berkshire Mountains.">
+    <link rel="canonical" href="https://mountainsongfarm.com/gallery">
+    <meta name="theme-color" content="#3b7302">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+
+    <!-- Open Graph / social sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Mountain Song Farm">
+    <meta property="og:title" content="Photo Gallery | Mountain Song Farm — Monterey, MA">
+    <meta property="og:description" content="Barn, pastures, indoor arena, and horses at Mountain Song Farm in Monterey, MA.">
+    <meta property="og:url" content="https://mountainsongfarm.com/gallery">
+    <meta property="og:image" content="https://mountainsongfarm.com/images/Birdseye.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Photo Gallery | Mountain Song Farm — Monterey, MA">
+    <meta name="twitter:description" content="Barn, pastures, indoor arena, and horses at Mountain Song Farm in Monterey, MA.">
+    <meta name="twitter:image" content="https://mountainsongfarm.com/images/Birdseye.jpg">
+
+    <link rel="preload" href="/images/Birdseye.jpg" as="image">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background-color: white;
+            min-height: 100vh;
+        }
+
+        .gallery-content {
+            padding-top: 100px;
+            padding-bottom: 40px;
+            min-height: calc(100vh - 140px);
+        }
+
+        .gallery-section {
+            background-color: #f5f8f2;
+            margin: 40px 0;
+            padding: 60px 0;
+            border-radius: 15px;
+        }
+
+        .gallery-section.no-background {
+            background: transparent;
+            backdrop-filter: none;
+        }
+
+        /* Large Carousel Styles */
+        .large-carousel-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            margin: 40px 0;
+        }
+
+        .large-carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .large-carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            background-color: #363d47;
+        }
+
+        .large-carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .large-carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .large-carousel-button:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .large-carousel-button.prev {
+            left: 20px;
+        }
+
+        .large-carousel-button.next {
+            right: 20px;
+        }
+
+        .large-carousel-dots {
+            display: none;
+        }
+
+        /* Natural Image Collage Styles */
+        .collage-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 400px;
+            padding: 40px 0;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 200px;
+            gap: 15px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .grid-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .grid-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .grid-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Every 5th item spans 2 columns for visual variety */
+        .grid-item:nth-child(5n+1) { grid-column: span 2; }
+
+        .grid-item {
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .large-carousel-container {
+                height: 400px;
+            }
+
+            .image-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 150px;
+                gap: 10px;
+                max-width: 500px;
+            }
+
+            .grid-item:nth-child(n) {
+                grid-column: auto;
+                grid-row: auto;
+            }
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+            cursor: default;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 36px;
+            cursor: pointer;
+            line-height: 1;
+            padding: 5px 12px;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 48px;
+            cursor: pointer;
+            padding: 10px 18px;
+            border-radius: 50%;
+            transition: background 0.2s;
+            user-select: none;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" class="header-logo visible">
+            <img src="/images/Logo.png" alt="Mountain Song Farm" loading="eager" decoding="async">
+        </a>
+        <button class="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <nav>
+            <ul>
+                <li><a href="/#home">Home</a></li>
+                <li><a href="/#about" class="nav-section">About</a></li>
+                <li><a href="/#contact" class="nav-section">Contact</a></li>
+                <li><a href="/boarding">Boarding</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/gallery" class="active">Gallery</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="gallery-content">
+        <div class="container">
+            <!-- Large Carousel Section -->
+            <section class="gallery-section no-background">
+                <h1 class="sr-only">Mountain Song Farm Photo Gallery — Monterey, MA</h1>
+                <h2>Farm Gallery</h2>
+                <div class="large-carousel-container">
+                    <div class="large-carousel-track">
+                        <div class="large-carousel-slide">
+                            <img src="/images/Birdseye.jpg" alt="Birds Eye View" loading="eager" fetchpriority="high" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Barn Rainbow.jpg" alt="Barn Rainbow" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/BarnOUTDOOR.jpg" alt="Barn Outdoor" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Barn.jpg" alt="Barn" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Barn Garden.jpeg" alt="Barn Garden" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Horse.jpg" alt="Horse" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Tess_Horse.jpg" alt="Tess with Horse" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Dusk.jpg" alt="Farm at Dusk" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/BarnNew1.jpg" alt="Barn Aisle" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/BarnNew2.jpg" alt="Barn Stalls" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Grazing.jpg" alt="Horse Grazing" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Pastures.jpg" alt="Pastures" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Saying Hi.jpg" alt="Horses Saying Hi" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Two Horses Laying.jpg" alt="Two Horses Laying" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/E287CACF-CAAA-4E40-AB49-EC5FA0C34F20.jpg" alt="Horse in Blanket" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/FDEC18B0-3D06-4EFD-A7B2-69B035036CF6.jpg" alt="Horses in Winter" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Barn Pond.jpg" alt="Barn Pond" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Stall.jpg" alt="Stables" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Meadow.jpg" alt="Meadow" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Horses Meadow.jpg" alt="Horses in Meadow" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Grazing meadow.jpg" alt="Grazing in Meadow" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Fog Horse.jpg" alt="Horse in Fog" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Eloise.jpg" alt="Eloise" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Snacking.jpg" alt="Snacking" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Bear Meadow.jpg" alt="Bear Meadow" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Horseback Driveway.jpg" alt="Horseback on Driveway" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/2BEB85D4-9BA8-4AB5-8813-AB42E822F245.jpg" alt="Horse in Winter" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Winter Horses HQ.jpg" alt="Winter Horses" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Winter Pastures.jpg" alt="Winter Pastures" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Snow Sunset.jpg" alt="Snow Sunset" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Winter Barn Lights.jpg" alt="Winter Barn Lights" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Winter Night Sky.jpg" alt="Winter Night Sky" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Grazing Winter.jpg" alt="Grazing in Winter" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Winter Glamour.jpg" alt="Winter Glamour" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Frozen Jacket.jpg" alt="Frozen Jacket" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Red Jacket.jpg" alt="Red Jacket" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Snow Writing.jpg" alt="Snow Writing" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Winter Riding Ring.jpg" alt="Winter Riding Ring" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Barn Snow 2.jpeg" alt="Barn in Snow" loading="lazy" decoding="async">
+                        </div>
+                        <div class="large-carousel-slide">
+                            <img src="/images/Wreath.jpg" alt="Wreath" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                    <button class="large-carousel-button prev">&#10094;</button>
+                    <button class="large-carousel-button next">&#10095;</button>
+                    <div class="large-carousel-dots"></div>
+                </div>
+            </section>
+
+            <!-- Image Collage Section -->
+            <section class="gallery-section">
+                <div class="collage-container">
+                    <div class="image-grid">
+                        <div class="grid-item">
+                            <img src="/images/Birdseye.jpg" alt="Birds Eye View" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Barn Rainbow.jpg" alt="Barn Rainbow" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/BarnOUTDOOR.jpg" alt="Barn Outdoor" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Barn.jpg" alt="Barn" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Dusk.jpg" alt="Farm at Dusk" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Horse.jpg" alt="Horse" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Tess_Horse.jpg" alt="Tess with Horse" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Barn Garden.jpeg" alt="Barn Garden" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/BarnNew1.jpg" alt="Barn Aisle" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/BarnNew2.jpg" alt="Barn Stalls" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Grazing.jpg" alt="Horse Grazing" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Pastures.jpg" alt="Pastures" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Saying Hi.jpg" alt="Horses Saying Hi" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Two Horses Laying.jpg" alt="Two Horses Laying" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/E287CACF-CAAA-4E40-AB49-EC5FA0C34F20.jpg" alt="Horse in Blanket" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/FDEC18B0-3D06-4EFD-A7B2-69B035036CF6.jpg" alt="Horses in Winter" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Barn Pond.jpg" alt="Barn Pond" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Stall.jpg" alt="Stables" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Meadow.jpg" alt="Meadow" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Horses Meadow.jpg" alt="Horses in Meadow" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Grazing meadow.jpg" alt="Grazing in Meadow" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Fog Horse.jpg" alt="Horse in Fog" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Eloise.jpg" alt="Eloise" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Snacking.jpg" alt="Snacking" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Bear Meadow.jpg" alt="Bear Meadow" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Horseback Driveway.jpg" alt="Horseback on Driveway" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/2BEB85D4-9BA8-4AB5-8813-AB42E822F245.jpg" alt="Horse in Winter" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Winter Horses HQ.jpg" alt="Winter Horses" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Winter Pastures.jpg" alt="Winter Pastures" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Snow Sunset.jpg" alt="Snow Sunset" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Winter Barn Lights.jpg" alt="Winter Barn Lights" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Winter Night Sky.jpg" alt="Winter Night Sky" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Grazing Winter.jpg" alt="Grazing in Winter" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Winter Glamour.jpg" alt="Winter Glamour" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Frozen Jacket.jpg" alt="Frozen Jacket" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Red Jacket.jpg" alt="Red Jacket" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Snow Writing.jpg" alt="Snow Writing" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Winter Riding Ring.jpg" alt="Winter Riding Ring" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Barn Snow 2.jpeg" alt="Barn in Snow" loading="lazy" decoding="async">
+                        </div>
+                        <div class="grid-item">
+                            <img src="/images/Wreath.jpg" alt="Wreath" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Mountain Song Farm. All Rights Reserved.</p>
+            <a class="created-by" href="https://quickarus.github.io/Portfolio/" target="_blank" rel="noopener noreferrer">
+                <span class="created-by-text">Created by Menes</span>
+                <img src="/images/menes-logo.png" alt="Menes" class="created-by-logo" width="26" height="26">
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Large Carousel Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.querySelector('.large-carousel-track');
+            const slides = Array.from(track.children);
+            const nextButton = document.querySelector('.large-carousel-button.next');
+            const prevButton = document.querySelector('.large-carousel-button.prev');
+            const dotsContainer = document.querySelector('.large-carousel-dots');
+
+            // Create dots
+            slides.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('large-carousel-dot');
+                if (index === 0) dot.classList.add('active');
+                dotsContainer.appendChild(dot);
+            });
+
+            const dots = Array.from(dotsContainer.children);
+            let currentSlide = 0;
+            let autoAdvanceTimer;
+            let isFirstChange = true;
+
+            function updateSlidePosition() {
+                track.style.transform = `translateX(-${currentSlide * 100}%)`;
+                
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                updateSlidePosition();
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                updateSlidePosition();
+            }
+
+            function startAutoAdvance() {
+                clearTimeout(autoAdvanceTimer);
+                const interval = isFirstChange ? 2000 : 12000; // 2 seconds for first change, 12 seconds after
+                
+                autoAdvanceTimer = setTimeout(() => {
+                    nextSlide();
+                    isFirstChange = false;
+                    startAutoAdvance(); // Continue with longer intervals
+                }, interval);
+            }
+
+            function resetAutoAdvance() {
+                isFirstChange = false;
+                startAutoAdvance();
+            }
+
+            // Manual navigation event handlers
+            nextButton.addEventListener('click', () => {
+                nextSlide();
+                resetAutoAdvance();
+            });
+
+            prevButton.addEventListener('click', () => {
+                prevSlide();
+                resetAutoAdvance();
+            });
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentSlide = index;
+                    updateSlidePosition();
+                    resetAutoAdvance();
+                });
+            });
+
+            // Start auto-advance
+            startAutoAdvance();
+        });
+    </script>
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <span class="lightbox-nav lightbox-prev">&#10094;</span>
+        <span class="lightbox-nav lightbox-next">&#10095;</span>
+        <img src="" alt="">
+    </div>
+
+    <script>
+        // Lightbox functionality
+        (function() {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = lightbox.querySelector('img');
+            const closeBtn = lightbox.querySelector('.lightbox-close');
+            const prevBtn = lightbox.querySelector('.lightbox-prev');
+            const nextBtn = lightbox.querySelector('.lightbox-next');
+
+            const gridItems = Array.from(document.querySelectorAll('.grid-item img'));
+            let currentIndex = 0;
+
+            function openLightbox(index) {
+                currentIndex = index;
+                lightboxImg.src = gridItems[index].src;
+                lightboxImg.alt = gridItems[index].alt;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            function showNext() {
+                currentIndex = (currentIndex + 1) % gridItems.length;
+                lightboxImg.src = gridItems[currentIndex].src;
+                lightboxImg.alt = gridItems[currentIndex].alt;
+            }
+
+            function showPrev() {
+                currentIndex = (currentIndex - 1 + gridItems.length) % gridItems.length;
+                lightboxImg.src = gridItems[currentIndex].src;
+                lightboxImg.alt = gridItems[currentIndex].alt;
+            }
+
+            gridItems.forEach((img, i) => {
+                img.parentElement.addEventListener('click', () => openLightbox(i));
+            });
+
+            closeBtn.addEventListener('click', closeLightbox);
+            prevBtn.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
+            nextBtn.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('active')) return;
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowRight') showNext();
+                if (e.key === 'ArrowLeft') showPrev();
+            });
+        })();
+    </script>
+
+    <script src="/script.js"></script>
+</body>
+</html> 

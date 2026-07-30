@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equine Services — Grooming, Training &amp; Holistic Care | Mountain Song Farm</title>
+    <meta name="description" content="Equine services at Mountain Song Farm in Monterey, MA: grooming &amp; wellness, exercise &amp; training, and holistic treatment tailored to each horse.">
+    <link rel="canonical" href="https://mountainsongfarm.com/services">
+    <meta name="theme-color" content="#3b7302">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+
+    <!-- Open Graph / social sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Mountain Song Farm">
+    <meta property="og:title" content="Equine Services — Grooming, Training &amp; Holistic Care | Mountain Song Farm">
+    <meta property="og:description" content="Grooming &amp; wellness, exercise &amp; training, and holistic equine treatment in Monterey, MA.">
+    <meta property="og:url" content="https://mountainsongfarm.com/services">
+    <meta property="og:image" content="https://mountainsongfarm.com/images/Stable.jpeg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Equine Services — Grooming, Training &amp; Holistic Care | Mountain Song Farm">
+    <meta name="twitter:description" content="Grooming &amp; wellness, exercise &amp; training, and holistic equine treatment in Monterey, MA.">
+    <meta name="twitter:image" content="https://mountainsongfarm.com/images/Stable.jpeg">
+
+    <link rel="preload" href="/images/Stable.jpeg" as="image">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            min-height: 100vh;
+        }
+
+        /* Fixed background layer — same "stays put" effect as background-attachment:fixed
+           but without the per-scroll repaint jank (also fixes iOS Safari) */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url('/images/Stable.jpeg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+
+        .main-content {
+            padding-top: 100px;
+            padding-bottom: 40px;
+            min-height: calc(100vh - 140px);
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 50px;
+            background-color: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 15px;
+            padding: 30px 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services-header h2 {
+            color: #333;
+        }
+
+        .services-header p {
+            color: #555;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 20px auto 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card:hover {
+            transform: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card i {
+            font-size: 2.5rem;
+            color: #3b7302;
+            margin-bottom: 20px;
+            background-color: #f5f8f2;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(59, 115, 2, 0.15);
+        }
+
+        .service-card h3 {
+            color: #3b7302;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        .service-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 12px;
+            text-align: left;
+        }
+
+        .service-card ul li {
+            padding: 6px 0;
+            color: #555;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.95rem;
+        }
+
+        .service-card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .service-card ul li::before {
+            content: "✓ ";
+            color: #3b7302;
+            font-weight: 600;
+        }
+
+        .offering {
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+        }
+
+        .offering:last-child {
+            border-bottom: none;
+        }
+
+        .offering summary {
+            cursor: pointer;
+            font-weight: 500;
+            color: #333;
+            font-size: 0.95rem;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .offering summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .offering summary::after {
+            content: "▸";
+            color: #3b7302;
+            font-size: 1rem;
+            transition: transform 0.2s ease;
+        }
+
+        .offering[open] summary::after {
+            transform: rotate(90deg);
+        }
+
+        .offering .price {
+            color: #3b7302;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .offering .details-content {
+            margin-top: 10px;
+            padding: 10px 12px;
+            background: #f9fbf7;
+            border-radius: 6px;
+            color: #555;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                max-height: 0;
+                transform: translateY(-5px);
+            }
+            to {
+                opacity: 1;
+                max-height: 500px;
+                transform: translateY(0);
+            }
+        }
+
+        .offering .details-content p {
+            margin-bottom: 8px;
+        }
+
+        .offering .details-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                background-image: url('/images/Pastures.jpg');
+            }
+            .main-content {
+                padding: 80px 20px 40px;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .services-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" class="header-logo visible">
+            <img src="/images/Logo.png" alt="Mountain Song Farm">
+        </a>
+        <button class="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <nav>
+            <ul>
+                <li><a href="/#home">Home</a></li>
+                <li><a href="/#about" class="nav-section">About</a></li>
+                <li><a href="/#contact" class="nav-section">Contact</a></li>
+                <li><a href="/boarding">Boarding</a></li>
+                <li><a href="/services" class="active">Services</a></li>
+                <li><a href="/gallery">Gallery</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="services-container">
+            <div class="services-header">
+                <h1 class="sr-only">Equine Services at Mountain Song Farm — Grooming, Training &amp; Holistic Care in Monterey, MA</h1>
+                <h2>Our Services</h2>
+                <p>Beyond daily boarding care, we offer specialized services tailored to your horse's individual needs. Contact barn manager for arrangement.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-horse"></i>
+                    <h3>Grooming &amp; Wellness</h3>
+
+                    <details class="offering">
+                        <summary>Essential Oil Body Rub</summary>
+                        <div class="details-content">
+                            <p class="price">$50</p>
+                            <p>This treatment includes a full grooming and all over body rub using a MSF peppermint and lavender essential oil blend in a coat conditioning rice bran oil base.</p>
+                            <p>Top tier pampering for calming and relaxation!</p>
+                        </div>
+                    </details>
+
+                    <details class="offering">
+                        <summary>Bentonite Clay Mud Mask (30 min)</summary>
+                        <div class="details-content">
+                            <p class="price">$45</p>
+                            <p>This treatment includes gentle massage of all four legs with a bentonite clay mask followed by a moisturizing MSF herbal salve application.</p>
+                            <p>Bentonite clay is renowned for its many benefits to humans and horses alike. Loaded with natural minerals, it is known to reduce inflammation, increase circulation, draw out heat and excess fluids and toxins, while having a cooling effect for tendons and joints.</p>
+                            <p>Wonderful as preventative maintenance or before or after exercise.</p>
+                        </div>
+                    </details>
+
+                    <details class="offering">
+                        <summary>Epsom Salt Herbal Hoof/Leg Soak</summary>
+                        <div class="details-content">
+                            <p class="price">$25</p>
+                            <p>By veterinarian prescription or for extra pampering, epsom salt and peppermint oil draw out toxins and impurities. Twenty minute warm soak.</p>
+                        </div>
+                    </details>
+
+                    <ul>
+                        <li>Hoof Care</li>
+                        <li>Bathing</li>
+                        <li>Mane and Tail Care</li>
+                        <li>Clipping</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-dumbbell"></i>
+                    <h3>Exercise &amp; Training</h3>
+
+                    <details class="offering">
+                        <summary>Groundwork &amp; Handling (1 hr)</summary>
+                        <div class="details-content">
+                            <p class="price">$70</p>
+                            <p>This includes positive reinforcement exercises for leading without stress, learning gentle release in all directions, hoof handling (farriers appreciate it!), and overall maintenance of ground manners.</p>
+                        </div>
+                    </details>
+
+                    <details class="offering">
+                        <summary>Liberty Round Pen Session (30 min)</summary>
+                        <div class="details-content">
+                            <p class="price">$45</p>
+                            <p>During a liberty session we will work at liberty (no halter or rope) with your horse to establish trust and understanding of body language. This creates a beautiful foundation for meaningful connections with your horse.</p>
+                            <p>Owners may participate as a lesson, +$15.</p>
+                        </div>
+                    </details>
+
+                    <ul>
+                        <li>Custom Rehabilitative Programs</li>
+                        <li>Hand Walking</li>
+                        <li>Riding</li>
+                        <li>Lunging</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Holistic Treatment</h3>
+
+                    <details class="offering">
+                        <summary>Acupuncture</summary>
+                        <div class="details-content">
+                            <p>Acupuncture offers many healing benefits to both humans and horses. Appointments can be arranged with our acupuncture certified veterinarian.</p>
+                        </div>
+                    </details>
+
+                    <details class="offering">
+                        <summary>Chiropractor</summary>
+                        <div class="details-content">
+                            <p>Chiropractic care for horses can be incredibly beneficial for horse's musculoskeletal systems. It is used to maintain overall health as well as to help relieve pain and keep the body aligned properly. Appointments can be arranged with our chiropractic certified veterinarian.</p>
+                        </div>
+                    </details>
+
+                    <ul>
+                        <li>Body Work</li>
+                        <li>Massage</li>
+                        <li>PEMF Therapy</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Mountain Song Farm. All Rights Reserved.</p>
+            <a class="created-by" href="https://quickarus.github.io/Portfolio/" target="_blank" rel="noopener noreferrer">
+                <span class="created-by-text">Created by Menes</span>
+                <img src="/images/menes-logo.png" alt="Menes" class="created-by-logo" width="26" height="26">
+            </a>
+        </div>
+    </footer>
+    <script>
+        document.querySelectorAll('.service-card').forEach(card => {
+            const offerings = card.querySelectorAll('.offering');
+            offerings.forEach(offering => {
+                offering.addEventListener('toggle', () => {
+                    if (offering.open) {
+                        offerings.forEach(other => {
+                            if (other !== offering) other.removeAttribute('open');
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="/script.js"></script>
+</body>
+</html>
