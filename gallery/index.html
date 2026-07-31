@@ -25,7 +25,10 @@
     <meta name="twitter:description" content="Barn, pastures, indoor arena, and horses at Mountain Song Farm in Monterey, MA.">
     <meta name="twitter:image" content="https://mountainsongfarm.com/images/Birdseye.jpg">
 
+    <link rel="preload" href="/images/webp/Birdseye.webp" as="image" type="image/webp">
     <link rel="preload" href="/images/Birdseye.jpg" as="image">
+    <link rel="preload" href="/images/webp/Barn Rainbow.webp" as="image" type="image/webp">
+    <link rel="preload" href="/images/webp/BarnOUTDOOR.webp" as="image" type="image/webp">
     <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -75,10 +78,17 @@
             background-color: #363d47;
         }
 
+        .large-carousel-slide picture {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
         .large-carousel-slide img {
             width: 100%;
             height: 100%;
             object-fit: contain;
+            display: block;
         }
 
         .large-carousel-button {
@@ -141,6 +151,8 @@
             border-radius: 8px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-size: cover;
+            background-position: center;
         }
 
         .grid-item:hover {
@@ -149,11 +161,17 @@
             z-index: 2;
         }
 
-        .grid-item img {
+        .grid-item img,
+        .grid-item .grid-photo {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, opacity 0.35s ease;
+            opacity: 0;
+        }
+
+        .grid-item .grid-photo.is-loaded {
+            opacity: 1;
         }
 
         .grid-item:hover img {
@@ -280,124 +298,244 @@
                 <div class="large-carousel-container">
                     <div class="large-carousel-track">
                         <div class="large-carousel-slide">
-                            <img src="/images/Birdseye.jpg" alt="Birds Eye View" loading="eager" fetchpriority="high" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Birdseye.webp">
+                            <img src="/images/Birdseye.jpg" alt="Birds Eye View" loading="eager" fetchpriority="high" decoding="async" data-full-jpg="/images/Birdseye.jpg" data-full-webp="/images/webp/Birdseye.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Barn Rainbow.jpg" alt="Barn Rainbow" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Barn Rainbow.webp">
+                            <img src="/images/Barn Rainbow.jpg" alt="Barn Rainbow" loading="lazy" decoding="async" data-full-jpg="/images/Barn Rainbow.jpg" data-full-webp="/images/webp/Barn Rainbow.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/BarnOUTDOOR.jpg" alt="Barn Outdoor" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/BarnOUTDOOR.webp">
+                            <img src="/images/BarnOUTDOOR.jpg" alt="Barn Outdoor" loading="lazy" decoding="async" data-full-jpg="/images/BarnOUTDOOR.jpg" data-full-webp="/images/webp/BarnOUTDOOR.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Barn.jpg" alt="Barn" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Barn.webp">
+                            <img src="/images/Barn.jpg" alt="Barn" loading="lazy" decoding="async" data-full-jpg="/images/Barn.jpg" data-full-webp="/images/webp/Barn.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Barn Garden.jpeg" alt="Barn Garden" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Barn Garden.webp">
+                            <img src="/images/Barn Garden.jpeg" alt="Barn Garden" loading="lazy" decoding="async" data-full-jpg="/images/Barn Garden.jpeg" data-full-webp="/images/webp/Barn Garden.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Horse.jpg" alt="Horse" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Horse.webp">
+                            <img src="/images/Horse.jpg" alt="Horse" loading="lazy" decoding="async" data-full-jpg="/images/Horse.jpg" data-full-webp="/images/webp/Horse.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Tess_Horse.jpg" alt="Tess with Horse" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Tess_Horse.webp">
+                            <img src="/images/Tess_Horse.jpg" alt="Tess with Horse" loading="lazy" decoding="async" data-full-jpg="/images/Tess_Horse.jpg" data-full-webp="/images/webp/Tess_Horse.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Dusk.jpg" alt="Farm at Dusk" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Dusk.webp">
+                            <img src="/images/Dusk.jpg" alt="Farm at Dusk" loading="lazy" decoding="async" data-full-jpg="/images/Dusk.jpg" data-full-webp="/images/webp/Dusk.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/BarnNew1.jpg" alt="Barn Aisle" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/BarnNew1.webp">
+                            <img src="/images/BarnNew1.jpg" alt="Barn Aisle" loading="lazy" decoding="async" data-full-jpg="/images/BarnNew1.jpg" data-full-webp="/images/webp/BarnNew1.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/BarnNew2.jpg" alt="Barn Stalls" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/BarnNew2.webp">
+                            <img src="/images/BarnNew2.jpg" alt="Barn Stalls" loading="lazy" decoding="async" data-full-jpg="/images/BarnNew2.jpg" data-full-webp="/images/webp/BarnNew2.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Grazing.jpg" alt="Horse Grazing" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Grazing.webp">
+                            <img src="/images/Grazing.jpg" alt="Horse Grazing" loading="lazy" decoding="async" data-full-jpg="/images/Grazing.jpg" data-full-webp="/images/webp/Grazing.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Pastures.jpg" alt="Pastures" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Pastures.webp">
+                            <img src="/images/Pastures.jpg" alt="Pastures" loading="lazy" decoding="async" data-full-jpg="/images/Pastures.jpg" data-full-webp="/images/webp/Pastures.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Saying Hi.jpg" alt="Horses Saying Hi" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Saying Hi.webp">
+                            <img src="/images/Saying Hi.jpg" alt="Horses Saying Hi" loading="lazy" decoding="async" data-full-jpg="/images/Saying Hi.jpg" data-full-webp="/images/webp/Saying Hi.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Two Horses Laying.jpg" alt="Two Horses Laying" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Two Horses Laying.webp">
+                            <img src="/images/Two Horses Laying.jpg" alt="Two Horses Laying" loading="lazy" decoding="async" data-full-jpg="/images/Two Horses Laying.jpg" data-full-webp="/images/webp/Two Horses Laying.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/E287CACF-CAAA-4E40-AB49-EC5FA0C34F20.jpg" alt="Horse in Blanket" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/E287CACF-CAAA-4E40-AB49-EC5FA0C34F20.webp">
+                            <img src="/images/E287CACF-CAAA-4E40-AB49-EC5FA0C34F20.jpg" alt="Horse in Blanket" loading="lazy" decoding="async" data-full-jpg="/images/E287CACF-CAAA-4E40-AB49-EC5FA0C34F20.jpg" data-full-webp="/images/webp/E287CACF-CAAA-4E40-AB49-EC5FA0C34F20.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/FDEC18B0-3D06-4EFD-A7B2-69B035036CF6.jpg" alt="Horses in Winter" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/FDEC18B0-3D06-4EFD-A7B2-69B035036CF6.webp">
+                            <img src="/images/FDEC18B0-3D06-4EFD-A7B2-69B035036CF6.jpg" alt="Horses in Winter" loading="lazy" decoding="async" data-full-jpg="/images/FDEC18B0-3D06-4EFD-A7B2-69B035036CF6.jpg" data-full-webp="/images/webp/FDEC18B0-3D06-4EFD-A7B2-69B035036CF6.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Barn Pond.jpg" alt="Barn Pond" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Barn Pond.webp">
+                            <img src="/images/Barn Pond.jpg" alt="Barn Pond" loading="lazy" decoding="async" data-full-jpg="/images/Barn Pond.jpg" data-full-webp="/images/webp/Barn Pond.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Stall.jpg" alt="Stables" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Stall.webp">
+                            <img src="/images/Stall.jpg" alt="Stables" loading="lazy" decoding="async" data-full-jpg="/images/Stall.jpg" data-full-webp="/images/webp/Stall.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Meadow.jpg" alt="Meadow" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Meadow.webp">
+                            <img src="/images/Meadow.jpg" alt="Meadow" loading="lazy" decoding="async" data-full-jpg="/images/Meadow.jpg" data-full-webp="/images/webp/Meadow.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Horses Meadow.jpg" alt="Horses in Meadow" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Horses Meadow.webp">
+                            <img src="/images/Horses Meadow.jpg" alt="Horses in Meadow" loading="lazy" decoding="async" data-full-jpg="/images/Horses Meadow.jpg" data-full-webp="/images/webp/Horses Meadow.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Grazing meadow.jpg" alt="Grazing in Meadow" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Grazing meadow.webp">
+                            <img src="/images/Grazing meadow.jpg" alt="Grazing in Meadow" loading="lazy" decoding="async" data-full-jpg="/images/Grazing meadow.jpg" data-full-webp="/images/webp/Grazing meadow.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Fog Horse.jpg" alt="Horse in Fog" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Fog Horse.webp">
+                            <img src="/images/Fog Horse.jpg" alt="Horse in Fog" loading="lazy" decoding="async" data-full-jpg="/images/Fog Horse.jpg" data-full-webp="/images/webp/Fog Horse.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Eloise.jpg" alt="Eloise" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Eloise.webp">
+                            <img src="/images/Eloise.jpg" alt="Eloise" loading="lazy" decoding="async" data-full-jpg="/images/Eloise.jpg" data-full-webp="/images/webp/Eloise.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Snacking.jpg" alt="Snacking" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Snacking.webp">
+                            <img src="/images/Snacking.jpg" alt="Snacking" loading="lazy" decoding="async" data-full-jpg="/images/Snacking.jpg" data-full-webp="/images/webp/Snacking.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Bear Meadow.jpg" alt="Bear Meadow" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Bear Meadow.webp">
+                            <img src="/images/Bear Meadow.jpg" alt="Bear Meadow" loading="lazy" decoding="async" data-full-jpg="/images/Bear Meadow.jpg" data-full-webp="/images/webp/Bear Meadow.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Horseback Driveway.jpg" alt="Horseback on Driveway" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Horseback Driveway.webp">
+                            <img src="/images/Horseback Driveway.jpg" alt="Horseback on Driveway" loading="lazy" decoding="async" data-full-jpg="/images/Horseback Driveway.jpg" data-full-webp="/images/webp/Horseback Driveway.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/2BEB85D4-9BA8-4AB5-8813-AB42E822F245.jpg" alt="Horse in Winter" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/2BEB85D4-9BA8-4AB5-8813-AB42E822F245.webp">
+                            <img src="/images/2BEB85D4-9BA8-4AB5-8813-AB42E822F245.jpg" alt="Horse in Winter" loading="lazy" decoding="async" data-full-jpg="/images/2BEB85D4-9BA8-4AB5-8813-AB42E822F245.jpg" data-full-webp="/images/webp/2BEB85D4-9BA8-4AB5-8813-AB42E822F245.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Winter Horses HQ.jpg" alt="Winter Horses" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Winter Horses HQ.webp">
+                            <img src="/images/Winter Horses HQ.jpg" alt="Winter Horses" loading="lazy" decoding="async" data-full-jpg="/images/Winter Horses HQ.jpg" data-full-webp="/images/webp/Winter Horses HQ.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Winter Pastures.jpg" alt="Winter Pastures" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Winter Pastures.webp">
+                            <img src="/images/Winter Pastures.jpg" alt="Winter Pastures" loading="lazy" decoding="async" data-full-jpg="/images/Winter Pastures.jpg" data-full-webp="/images/webp/Winter Pastures.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Snow Sunset.jpg" alt="Snow Sunset" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Snow Sunset.webp">
+                            <img src="/images/Snow Sunset.jpg" alt="Snow Sunset" loading="lazy" decoding="async" data-full-jpg="/images/Snow Sunset.jpg" data-full-webp="/images/webp/Snow Sunset.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Winter Barn Lights.jpg" alt="Winter Barn Lights" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Winter Barn Lights.webp">
+                            <img src="/images/Winter Barn Lights.jpg" alt="Winter Barn Lights" loading="lazy" decoding="async" data-full-jpg="/images/Winter Barn Lights.jpg" data-full-webp="/images/webp/Winter Barn Lights.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Winter Night Sky.jpg" alt="Winter Night Sky" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Winter Night Sky.webp">
+                            <img src="/images/Winter Night Sky.jpg" alt="Winter Night Sky" loading="lazy" decoding="async" data-full-jpg="/images/Winter Night Sky.jpg" data-full-webp="/images/webp/Winter Night Sky.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Grazing Winter.jpg" alt="Grazing in Winter" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Grazing Winter.webp">
+                            <img src="/images/Grazing Winter.jpg" alt="Grazing in Winter" loading="lazy" decoding="async" data-full-jpg="/images/Grazing Winter.jpg" data-full-webp="/images/webp/Grazing Winter.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Winter Glamour.jpg" alt="Winter Glamour" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Winter Glamour.webp">
+                            <img src="/images/Winter Glamour.jpg" alt="Winter Glamour" loading="lazy" decoding="async" data-full-jpg="/images/Winter Glamour.jpg" data-full-webp="/images/webp/Winter Glamour.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Frozen Jacket.jpg" alt="Frozen Jacket" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Frozen Jacket.webp">
+                            <img src="/images/Frozen Jacket.jpg" alt="Frozen Jacket" loading="lazy" decoding="async" data-full-jpg="/images/Frozen Jacket.jpg" data-full-webp="/images/webp/Frozen Jacket.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Red Jacket.jpg" alt="Red Jacket" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Red Jacket.webp">
+                            <img src="/images/Red Jacket.jpg" alt="Red Jacket" loading="lazy" decoding="async" data-full-jpg="/images/Red Jacket.jpg" data-full-webp="/images/webp/Red Jacket.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Snow Writing.jpg" alt="Snow Writing" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Snow Writing.webp">
+                            <img src="/images/Snow Writing.jpg" alt="Snow Writing" loading="lazy" decoding="async" data-full-jpg="/images/Snow Writing.jpg" data-full-webp="/images/webp/Snow Writing.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Winter Riding Ring.jpg" alt="Winter Riding Ring" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Winter Riding Ring.webp">
+                            <img src="/images/Winter Riding Ring.jpg" alt="Winter Riding Ring" loading="lazy" decoding="async" data-full-jpg="/images/Winter Riding Ring.jpg" data-full-webp="/images/webp/Winter Riding Ring.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Barn Snow 2.jpeg" alt="Barn in Snow" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Barn Snow 2.webp">
+                            <img src="/images/Barn Snow 2.jpeg" alt="Barn in Snow" loading="lazy" decoding="async" data-full-jpg="/images/Barn Snow 2.jpeg" data-full-webp="/images/webp/Barn Snow 2.webp">
+                        </picture>
                         </div>
                         <div class="large-carousel-slide">
-                            <img src="/images/Wreath.jpg" alt="Wreath" loading="lazy" decoding="async">
+                            <picture>
+                            <source type="image/webp" srcset="/images/webp/Wreath.webp">
+                            <img src="/images/Wreath.jpg" alt="Wreath" loading="lazy" decoding="async" data-full-jpg="/images/Wreath.jpg" data-full-webp="/images/webp/Wreath.webp">
+                        </picture>
                         </div>
                     </div>
                     <button class="large-carousel-button prev">&#10094;</button>
@@ -410,125 +548,245 @@
             <section class="gallery-section">
                 <div class="collage-container">
                     <div class="image-grid">
-                        <div class="grid-item">
-                            <img src="/images/Birdseye.jpg" alt="Birds Eye View" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Birdseye.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Birdseye.webp">
+                                <img src="/images/thumbs/Birdseye.jpg" alt="Birds Eye View" loading="eager" decoding="async" class="grid-photo" data-full-jpg="/images/Birdseye.jpg" data-full-webp="/images/webp/Birdseye.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Barn Rainbow.jpg" alt="Barn Rainbow" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Barn Rainbow.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Barn Rainbow.webp">
+                                <img src="/images/thumbs/Barn Rainbow.jpg" alt="Barn Rainbow" loading="eager" decoding="async" class="grid-photo" data-full-jpg="/images/Barn Rainbow.jpg" data-full-webp="/images/webp/Barn Rainbow.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/BarnOUTDOOR.jpg" alt="Barn Outdoor" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/BarnOUTDOOR.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/BarnOUTDOOR.webp">
+                                <img src="/images/thumbs/BarnOUTDOOR.jpg" alt="Barn Outdoor" loading="eager" decoding="async" class="grid-photo" data-full-jpg="/images/BarnOUTDOOR.jpg" data-full-webp="/images/webp/BarnOUTDOOR.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Barn.jpg" alt="Barn" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Barn.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Barn.webp">
+                                <img src="/images/thumbs/Barn.jpg" alt="Barn" loading="eager" decoding="async" class="grid-photo" data-full-jpg="/images/Barn.jpg" data-full-webp="/images/webp/Barn.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Dusk.jpg" alt="Farm at Dusk" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Dusk.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Dusk.webp">
+                                <img src="/images/thumbs/Dusk.jpg" alt="Farm at Dusk" loading="eager" decoding="async" class="grid-photo" data-full-jpg="/images/Dusk.jpg" data-full-webp="/images/webp/Dusk.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Horse.jpg" alt="Horse" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Horse.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Horse.webp">
+                                <img src="/images/thumbs/Horse.jpg" alt="Horse" loading="eager" decoding="async" class="grid-photo" data-full-jpg="/images/Horse.jpg" data-full-webp="/images/webp/Horse.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Tess_Horse.jpg" alt="Tess with Horse" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Tess_Horse.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Tess_Horse.webp">
+                                <img src="/images/thumbs/Tess_Horse.jpg" alt="Tess with Horse" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Tess_Horse.jpg" data-full-webp="/images/webp/Tess_Horse.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Barn Garden.jpeg" alt="Barn Garden" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Barn Garden.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Barn Garden.webp">
+                                <img src="/images/thumbs/Barn Garden.jpg" alt="Barn Garden" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Barn Garden.jpeg" data-full-webp="/images/webp/Barn Garden.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/BarnNew1.jpg" alt="Barn Aisle" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/BarnNew1.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/BarnNew1.webp">
+                                <img src="/images/thumbs/BarnNew1.jpg" alt="Barn Aisle" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/BarnNew1.jpg" data-full-webp="/images/webp/BarnNew1.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/BarnNew2.jpg" alt="Barn Stalls" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/BarnNew2.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/BarnNew2.webp">
+                                <img src="/images/thumbs/BarnNew2.jpg" alt="Barn Stalls" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/BarnNew2.jpg" data-full-webp="/images/webp/BarnNew2.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Grazing.jpg" alt="Horse Grazing" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Grazing.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Grazing.webp">
+                                <img src="/images/thumbs/Grazing.jpg" alt="Horse Grazing" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Grazing.jpg" data-full-webp="/images/webp/Grazing.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Pastures.jpg" alt="Pastures" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Pastures.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Pastures.webp">
+                                <img src="/images/thumbs/Pastures.jpg" alt="Pastures" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Pastures.jpg" data-full-webp="/images/webp/Pastures.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Saying Hi.jpg" alt="Horses Saying Hi" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Saying Hi.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Saying Hi.webp">
+                                <img src="/images/thumbs/Saying Hi.jpg" alt="Horses Saying Hi" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Saying Hi.jpg" data-full-webp="/images/webp/Saying Hi.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Two Horses Laying.jpg" alt="Two Horses Laying" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Two Horses Laying.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Two Horses Laying.webp">
+                                <img src="/images/thumbs/Two Horses Laying.jpg" alt="Two Horses Laying" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Two Horses Laying.jpg" data-full-webp="/images/webp/Two Horses Laying.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/E287CACF-CAAA-4E40-AB49-EC5FA0C34F20.jpg" alt="Horse in Blanket" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/E287CACF-CAAA-4E40-AB49-EC5FA0C34F20.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/E287CACF-CAAA-4E40-AB49-EC5FA0C34F20.webp">
+                                <img src="/images/thumbs/E287CACF-CAAA-4E40-AB49-EC5FA0C34F20.jpg" alt="Horse in Blanket" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/E287CACF-CAAA-4E40-AB49-EC5FA0C34F20.jpg" data-full-webp="/images/webp/E287CACF-CAAA-4E40-AB49-EC5FA0C34F20.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/FDEC18B0-3D06-4EFD-A7B2-69B035036CF6.jpg" alt="Horses in Winter" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/FDEC18B0-3D06-4EFD-A7B2-69B035036CF6.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/FDEC18B0-3D06-4EFD-A7B2-69B035036CF6.webp">
+                                <img src="/images/thumbs/FDEC18B0-3D06-4EFD-A7B2-69B035036CF6.jpg" alt="Horses in Winter" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/FDEC18B0-3D06-4EFD-A7B2-69B035036CF6.jpg" data-full-webp="/images/webp/FDEC18B0-3D06-4EFD-A7B2-69B035036CF6.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Barn Pond.jpg" alt="Barn Pond" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Barn Pond.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Barn Pond.webp">
+                                <img src="/images/thumbs/Barn Pond.jpg" alt="Barn Pond" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Barn Pond.jpg" data-full-webp="/images/webp/Barn Pond.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Stall.jpg" alt="Stables" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Stall.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Stall.webp">
+                                <img src="/images/thumbs/Stall.jpg" alt="Stables" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Stall.jpg" data-full-webp="/images/webp/Stall.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Meadow.jpg" alt="Meadow" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Meadow.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Meadow.webp">
+                                <img src="/images/thumbs/Meadow.jpg" alt="Meadow" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Meadow.jpg" data-full-webp="/images/webp/Meadow.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Horses Meadow.jpg" alt="Horses in Meadow" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Horses Meadow.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Horses Meadow.webp">
+                                <img src="/images/thumbs/Horses Meadow.jpg" alt="Horses in Meadow" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Horses Meadow.jpg" data-full-webp="/images/webp/Horses Meadow.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Grazing meadow.jpg" alt="Grazing in Meadow" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Grazing meadow.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Grazing meadow.webp">
+                                <img src="/images/thumbs/Grazing meadow.jpg" alt="Grazing in Meadow" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Grazing meadow.jpg" data-full-webp="/images/webp/Grazing meadow.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Fog Horse.jpg" alt="Horse in Fog" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Fog Horse.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Fog Horse.webp">
+                                <img src="/images/thumbs/Fog Horse.jpg" alt="Horse in Fog" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Fog Horse.jpg" data-full-webp="/images/webp/Fog Horse.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Eloise.jpg" alt="Eloise" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Eloise.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Eloise.webp">
+                                <img src="/images/thumbs/Eloise.jpg" alt="Eloise" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Eloise.jpg" data-full-webp="/images/webp/Eloise.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Snacking.jpg" alt="Snacking" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Snacking.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Snacking.webp">
+                                <img src="/images/thumbs/Snacking.jpg" alt="Snacking" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Snacking.jpg" data-full-webp="/images/webp/Snacking.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Bear Meadow.jpg" alt="Bear Meadow" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Bear Meadow.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Bear Meadow.webp">
+                                <img src="/images/thumbs/Bear Meadow.jpg" alt="Bear Meadow" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Bear Meadow.jpg" data-full-webp="/images/webp/Bear Meadow.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Horseback Driveway.jpg" alt="Horseback on Driveway" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Horseback Driveway.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Horseback Driveway.webp">
+                                <img src="/images/thumbs/Horseback Driveway.jpg" alt="Horseback on Driveway" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Horseback Driveway.jpg" data-full-webp="/images/webp/Horseback Driveway.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/2BEB85D4-9BA8-4AB5-8813-AB42E822F245.jpg" alt="Horse in Winter" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/2BEB85D4-9BA8-4AB5-8813-AB42E822F245.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/2BEB85D4-9BA8-4AB5-8813-AB42E822F245.webp">
+                                <img src="/images/thumbs/2BEB85D4-9BA8-4AB5-8813-AB42E822F245.jpg" alt="Horse in Winter" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/2BEB85D4-9BA8-4AB5-8813-AB42E822F245.jpg" data-full-webp="/images/webp/2BEB85D4-9BA8-4AB5-8813-AB42E822F245.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Winter Horses HQ.jpg" alt="Winter Horses" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Winter Horses HQ.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Winter Horses HQ.webp">
+                                <img src="/images/thumbs/Winter Horses HQ.jpg" alt="Winter Horses" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Winter Horses HQ.jpg" data-full-webp="/images/webp/Winter Horses HQ.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Winter Pastures.jpg" alt="Winter Pastures" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Winter Pastures.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Winter Pastures.webp">
+                                <img src="/images/thumbs/Winter Pastures.jpg" alt="Winter Pastures" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Winter Pastures.jpg" data-full-webp="/images/webp/Winter Pastures.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Snow Sunset.jpg" alt="Snow Sunset" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Snow Sunset.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Snow Sunset.webp">
+                                <img src="/images/thumbs/Snow Sunset.jpg" alt="Snow Sunset" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Snow Sunset.jpg" data-full-webp="/images/webp/Snow Sunset.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Winter Barn Lights.jpg" alt="Winter Barn Lights" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Winter Barn Lights.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Winter Barn Lights.webp">
+                                <img src="/images/thumbs/Winter Barn Lights.jpg" alt="Winter Barn Lights" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Winter Barn Lights.jpg" data-full-webp="/images/webp/Winter Barn Lights.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Winter Night Sky.jpg" alt="Winter Night Sky" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Winter Night Sky.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Winter Night Sky.webp">
+                                <img src="/images/thumbs/Winter Night Sky.jpg" alt="Winter Night Sky" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Winter Night Sky.jpg" data-full-webp="/images/webp/Winter Night Sky.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Grazing Winter.jpg" alt="Grazing in Winter" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Grazing Winter.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Grazing Winter.webp">
+                                <img src="/images/thumbs/Grazing Winter.jpg" alt="Grazing in Winter" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Grazing Winter.jpg" data-full-webp="/images/webp/Grazing Winter.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Winter Glamour.jpg" alt="Winter Glamour" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Winter Glamour.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Winter Glamour.webp">
+                                <img src="/images/thumbs/Winter Glamour.jpg" alt="Winter Glamour" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Winter Glamour.jpg" data-full-webp="/images/webp/Winter Glamour.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Frozen Jacket.jpg" alt="Frozen Jacket" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Frozen Jacket.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Frozen Jacket.webp">
+                                <img src="/images/thumbs/Frozen Jacket.jpg" alt="Frozen Jacket" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Frozen Jacket.jpg" data-full-webp="/images/webp/Frozen Jacket.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Red Jacket.jpg" alt="Red Jacket" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Red Jacket.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Red Jacket.webp">
+                                <img src="/images/thumbs/Red Jacket.jpg" alt="Red Jacket" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Red Jacket.jpg" data-full-webp="/images/webp/Red Jacket.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Snow Writing.jpg" alt="Snow Writing" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Snow Writing.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Snow Writing.webp">
+                                <img src="/images/thumbs/Snow Writing.jpg" alt="Snow Writing" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Snow Writing.jpg" data-full-webp="/images/webp/Snow Writing.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Winter Riding Ring.jpg" alt="Winter Riding Ring" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Winter Riding Ring.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Winter Riding Ring.webp">
+                                <img src="/images/thumbs/Winter Riding Ring.jpg" alt="Winter Riding Ring" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Winter Riding Ring.jpg" data-full-webp="/images/webp/Winter Riding Ring.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Barn Snow 2.jpeg" alt="Barn in Snow" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Barn Snow 2.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Barn Snow 2.webp">
+                                <img src="/images/thumbs/Barn Snow 2.jpg" alt="Barn in Snow" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Barn Snow 2.jpeg" data-full-webp="/images/webp/Barn Snow 2.webp">
+                            </picture>
                         </div>
-                        <div class="grid-item">
-                            <img src="/images/Wreath.jpg" alt="Wreath" loading="lazy" decoding="async">
+                        <div class="grid-item" style="background-image: url('/images/blur/Wreath.jpg')">
+                            <picture>
+                                <source type="image/webp" srcset="/images/thumbs/Wreath.webp">
+                                <img src="/images/thumbs/Wreath.jpg" alt="Wreath" loading="lazy" decoding="async" class="grid-photo" data-full-jpg="/images/Wreath.jpg" data-full-webp="/images/webp/Wreath.webp">
+                            </picture>
                         </div>
                     </div>
                 </div>
@@ -634,7 +892,15 @@
     </div>
 
     <script>
-        // Lightbox functionality
+        // Grid thumbnail fade-in (blur-up placeholders)
+        document.querySelectorAll('.grid-photo').forEach((img) => {
+            const markLoaded = () => img.classList.add('is-loaded');
+            if (img.complete) markLoaded();
+            else img.addEventListener('load', markLoaded, { once: true });
+        });
+    </script>
+    <script>
+        // Lightbox functionality — full-resolution WebP/JPEG from data attributes
         (function() {
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = lightbox.querySelector('img');
@@ -642,13 +908,28 @@
             const prevBtn = lightbox.querySelector('.lightbox-prev');
             const nextBtn = lightbox.querySelector('.lightbox-next');
 
-            const gridItems = Array.from(document.querySelectorAll('.grid-item img'));
+            const gridItems = Array.from(document.querySelectorAll('.grid-item .grid-photo'));
             let currentIndex = 0;
+            let supportsWebp = false;
+
+            const probe = new Image();
+            probe.onload = () => { supportsWebp = probe.width === 1; };
+            probe.onerror = () => { supportsWebp = false; };
+            probe.src = 'data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA=';
+
+            function fullSrc(img) {
+                if (supportsWebp && img.dataset.fullWebp) return img.dataset.fullWebp;
+                return img.dataset.fullJpg || img.currentSrc || img.src;
+            }
+
+            function showImage(index) {
+                lightboxImg.src = fullSrc(gridItems[index]);
+                lightboxImg.alt = gridItems[index].alt;
+            }
 
             function openLightbox(index) {
                 currentIndex = index;
-                lightboxImg.src = gridItems[index].src;
-                lightboxImg.alt = gridItems[index].alt;
+                showImage(index);
                 lightbox.classList.add('active');
                 document.body.style.overflow = 'hidden';
             }
@@ -660,18 +941,16 @@
 
             function showNext() {
                 currentIndex = (currentIndex + 1) % gridItems.length;
-                lightboxImg.src = gridItems[currentIndex].src;
-                lightboxImg.alt = gridItems[currentIndex].alt;
+                showImage(currentIndex);
             }
 
             function showPrev() {
                 currentIndex = (currentIndex - 1 + gridItems.length) % gridItems.length;
-                lightboxImg.src = gridItems[currentIndex].src;
-                lightboxImg.alt = gridItems[currentIndex].alt;
+                showImage(currentIndex);
             }
 
             gridItems.forEach((img, i) => {
-                img.parentElement.addEventListener('click', () => openLightbox(i));
+                img.closest('.grid-item').addEventListener('click', () => openLightbox(i));
             });
 
             closeBtn.addEventListener('click', closeLightbox);
@@ -690,6 +969,6 @@
         })();
     </script>
 
-    <script src="/script.js"></script>
+    <script src="/script.js?v=2"></script>
 </body>
 </html> 

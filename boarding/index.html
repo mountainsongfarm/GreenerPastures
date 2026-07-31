@@ -25,7 +25,10 @@
     <meta name="twitter:description" content="Custom-care horse boarding in Monterey, MA: daily turnout, stall cleaning, customized feed, blanketing, and holistic health monitoring.">
     <meta name="twitter:image" content="https://mountainsongfarm.com/images/Pastures.jpg">
 
-    <link rel="preload" href="/images/Pastures.jpg" as="image">
+    <link rel="preload" href="/images/webp/Pastures.webp" as="image" type="image/webp" media="(min-width: 769px)">
+    <link rel="preload" href="/images/Pastures.jpg" as="image" media="(min-width: 769px)">
+    <link rel="preload" href="/images/webp/Snow Sunset.webp" as="image" type="image/webp" media="(max-width: 768px)">
+    <link rel="preload" href="/images/Snow Sunset.jpg" as="image" media="(max-width: 768px)">
     <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -43,6 +46,15 @@
             background-size: cover;
             background-position: center;
             z-index: -1;
+        }
+
+        @supports (background-image: image-set(url('/images/webp/Pastures.webp') type('image/webp'))) {
+            body::before {
+                background-image: image-set(
+                    url('/images/webp/Pastures.webp') type('image/webp'),
+                    url('/images/Pastures.jpg') type('image/jpeg')
+                );
+            }
         }
 
         .main-content {
@@ -120,8 +132,16 @@
         }
 
         @media (max-width: 768px) {
-            body {
+            body::before {
                 background-image: url('/images/Snow Sunset.jpg');
+            }
+            @supports (background-image: image-set(url('/images/webp/Snow Sunset.webp') type('image/webp'))) {
+                body::before {
+                    background-image: image-set(
+                        url('/images/webp/Snow Sunset.webp') type('image/webp'),
+                        url('/images/Snow Sunset.jpg') type('image/jpeg')
+                    );
+                }
             }
             .care-items {
                 grid-template-columns: 1fr;
@@ -257,6 +277,6 @@
         </div>
     </footer>
 
-    <script src="/script.js"></script>
+    <script src="/script.js?v=2"></script>
 </body>
 </html> 

@@ -54,21 +54,32 @@
     </script>
 
     <link rel="preload" href="images/Logo.png" as="image">
+    <link rel="preload" href="images/webp/Barn Rainbow-mobile.webp" as="image" type="image/webp" media="(max-width: 768px)">
+    <link rel="preload" href="images/Barn Rainbow-mobile.jpg" as="image" media="(max-width: 768px)">
+    <link rel="preload" href="images/webp/Barn Rainbow.webp" as="image" type="image/webp" media="(min-width: 769px)">
     <link rel="preload" href="images/Barn Rainbow.jpg" as="image" media="(min-width: 769px)">
-    <link rel="preload" href="images/Horses Meadow.jpg" as="image" media="(max-width: 768px)">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         #home .parallax-bg {
-            background-image: url('images/Barn Rainbow.jpg');
+            background-image: url('images/blur/Barn Rainbow.jpg');
             background-size: cover;
             background-position: center center;
         }
-        @media screen and (max-width: 768px) {
+        @media (max-width: 768px) {
             #home .parallax-bg {
-                background-image: url('images/Horses Meadow.jpg');
-                background-size: auto 85%;
-                background-position: 42% 60%;
+                background-image: image-set(
+                    url('images/webp/Barn Rainbow-mobile.webp') type('image/webp'),
+                    url('images/Barn Rainbow-mobile.jpg') type('image/jpeg')
+                );
+            }
+        }
+        @media (min-width: 769px) {
+            #home .parallax-bg {
+                background-image: image-set(
+                    url('images/webp/Barn Rainbow.webp') type('image/webp'),
+                    url('images/Barn Rainbow.jpg') type('image/jpeg')
+                );
             }
         }
     </style>
@@ -161,6 +172,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=2"></script>
 </body>
 </html> 
