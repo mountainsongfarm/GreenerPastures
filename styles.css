@@ -615,6 +615,12 @@ footer .container {
         height: 100vh;
     }
 
+    .parallax-bg {
+        height: 100%;
+        transform: none !important;
+        background-position: center bottom;
+    }
+
     #home .content {
         width: 55%;
         max-width: none;

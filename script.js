@@ -1,6 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Gentle parallax — background moves slower than scroll
     function handleParallax() {
+        if (window.matchMedia('(max-width: 768px)').matches) {
+            document.querySelectorAll('.parallax-bg').forEach((bg) => {
+                bg.style.transform = 'translate3d(0, 0, 0)';
+            });
+            return;
+        }
+
         const sections = document.querySelectorAll('.parallax-section');
         const scrollY = window.pageYOffset || document.documentElement.scrollTop;
 

@@ -30,7 +30,7 @@ def carousel_replacer(match: re.Match) -> str:
 def grid_item_html(filename: str, alt: str, index: int) -> str:
     s = stem(filename)
     loading = 'loading="eager"' if index < 6 else 'loading="lazy"'
-    return f'''                        <div class="grid-item" style="background-image: url('/images/blur/{s}.jpg')">
+    return f'''                        <div class="grid-item">
                             <picture>
                                 <source type="image/webp" srcset="/images/thumbs/{s}.webp">
                                 <img src="/images/thumbs/{s}.jpg" alt="{alt}" {loading} decoding="async" class="grid-photo" data-full-jpg="/images/{filename}" data-full-webp="/images/webp/{s}.webp">

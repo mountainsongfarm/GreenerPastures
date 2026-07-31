@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
-"""Optimize site images: compress originals, create WebP, thumbs, and blur placeholders."""
+"""Optimize site images: compress originals, create WebP, thumbs (EXIF-aware)."""
 
-import os
-import shutil
 import subprocess
 import sys
+from io import BytesIO
 from pathlib import Path
+
+from PIL import Image, ImageOps
 
 ROOT = Path(__file__).resolve().parents[1]
 IMAGES = ROOT / "images"
 WEBP_DIR = IMAGES / "webp"
 THUMBS_DIR = IMAGES / "thumbs"
-BLUR_DIR = IMAGES / "blur"
 
 GALLERY_IMAGES = [
     "Birdseye.jpg",
@@ -56,43 +56,33 @@ GALLERY_IMAGES = [
     "Wreath.jpg",
 ]
 
-BACKGROUND_ONLY = [
-    "Stable.jpeg",
-]
+BACKGROUND_ONLY = ["Stable.jpeg"]
 
 HERO_DESKTOP = "Barn Rainbow.jpg"
 HERO_MOBILE = "Barn Rainbow-mobile.jpg"
 
 
-def run(cmd):
-    subprocess.run(cmd, check=True, capture_output=True)
+def load_oriented(path: Path) -> Image.Image:
+    with Image.open(path) as im:
+        return ImageOps.exif_transpose(im).convert("RGB")
 
 
-def file_size(path):
-    return path.stat().st_size if path.exists() else 0
+def resize_max(im: Image.Image, max_dim: int) -> Image.Image:
+    w, h = im.size
+    if max(w, h) <= max_dim:
+        return im.copy()
+    scale = max_dim / max(w, h)
+    return im.resize((round(w * scale), round(h * scale)), Image.Resampling.LANCZOS)
 
 
-def optimize_jpeg(src: Path, dst: Path, max_dim: int, quality: int = 80, force: bool = False):
-    """Resize and compress a JPEG/JPEG-like image. Keeps original if larger unless force=True."""
-    dst.parent.mkdir(parents=True, exist_ok=True)
-    tmp = dst.with_suffix(dst.suffix + ".tmp.jpg")
-    shutil.copy2(src, tmp)
-    run(["sips", "-Z", str(max_dim), str(tmp)])
-    run(["sips", "-s", "format", "jpeg", "-s", "formatOptions", str(quality), str(tmp)])
-
-    src_size = file_size(src) if src.exists() else 0
-    tmp_size = file_size(tmp)
-    if force or not dst.exists() or tmp_size < src_size or dst.resolve() != src.resolve():
-        shutil.move(str(tmp), str(dst))
-    else:
-        tmp.unlink()
-        if dst.resolve() != src.resolve() and src.exists():
-            shutil.copy2(src, dst)
+def save_jpeg(im: Image.Image, path: Path, quality: int):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    im.save(path, "JPEG", quality=quality, optimize=True)
 
 
 def to_webp(src: Path, dst: Path, quality: int = 82):
     dst.parent.mkdir(parents=True, exist_ok=True)
-    run(["cwebp", "-q", str(quality), str(src), "-o", str(dst)])
+    subprocess.run(["cwebp", "-q", str(quality), str(src), "-o", str(dst)], check=True, capture_output=True)
 
 
 def stem_for(filename: str) -> str:
@@ -103,26 +93,37 @@ def webp_name(filename: str) -> str:
     return stem_for(filename) + ".webp"
 
 
+def bake_exif_if_needed(path: Path, quality: int = 92) -> bool:
+    """Write orientation-corrected pixels to source file when EXIF rotation is present."""
+    with Image.open(path) as raw:
+        exif = raw.getexif()
+        orient = exif.get(274, 1) if exif else 1
+        if orient == 1:
+            return False
+        corrected = ImageOps.exif_transpose(raw).convert("RGB")
+    save_jpeg(corrected, path, quality)
+    print(f"  EXIF baked: {path.name}")
+    return True
+
+
 def main():
-    for d in (WEBP_DIR, THUMBS_DIR, BLUR_DIR):
+    for d in (WEBP_DIR, THUMBS_DIR):
         d.mkdir(parents=True, exist_ok=True)
 
     all_images = list(dict.fromkeys(GALLERY_IMAGES + BACKGROUND_ONLY))
-    total_before = 0
-    total_after = 0
 
-    # Hero desktop: max 1920px
     hero_src = IMAGES / HERO_DESKTOP
     if hero_src.exists():
-        before = file_size(hero_src)
-        optimize_jpeg(hero_src, hero_src, max_dim=1920, quality=75, force=True)
+        hero = load_oriented(hero_src)
+        save_jpeg(resize_max(hero, 1920), hero_src, 75)
         to_webp(hero_src, WEBP_DIR / webp_name(HERO_DESKTOP))
-        optimize_jpeg(hero_src, IMAGES / HERO_MOBILE, max_dim=1200, quality=75, force=True)
-        to_webp(IMAGES / HERO_MOBILE, WEBP_DIR / webp_name(HERO_MOBILE))
-        optimize_jpeg(hero_src, BLUR_DIR / HERO_DESKTOP, max_dim=32, quality=40)
-        total_before += before
-        total_after += file_size(hero_src)
-        print(f"Hero: {before/1024/1024:.2f} MB -> {file_size(hero_src)/1024/1024:.2f} MB")
+        mobile_path = IMAGES / HERO_MOBILE
+        save_jpeg(resize_max(load_oriented(hero_src), 1200), mobile_path, 75)
+        to_webp(mobile_path, WEBP_DIR / webp_name(HERO_MOBILE))
+        thumb_path = THUMBS_DIR / (stem_for(HERO_DESKTOP) + ".jpg")
+        save_jpeg(resize_max(load_oriented(hero_src), 400), thumb_path, 78)
+        to_webp(thumb_path, THUMBS_DIR / webp_name(HERO_DESKTOP), 78)
+        print(f"Hero: {hero_src.stat().st_size/1024:.0f} KB, mobile {mobile_path.stat().st_size/1024:.0f} KB")
 
     for name in all_images:
         if name == HERO_DESKTOP:
@@ -132,27 +133,18 @@ def main():
             print(f"SKIP missing: {name}", file=sys.stderr)
             continue
 
-        before = file_size(src)
-        total_before += before
-
-        # Full-size: cap at 1600px, quality 80
-        optimize_jpeg(src, src, max_dim=1600, quality=75)
+        bake_exif_if_needed(src)
+        im = load_oriented(src)
+        full = resize_max(im, 1600)
+        save_jpeg(full, src, 82)
         to_webp(src, WEBP_DIR / webp_name(name))
 
-        # Thumbnail for grid (~400px)
-        thumb_jpg = THUMBS_DIR / (stem_for(name) + ".jpg")
-        optimize_jpeg(src, thumb_jpg, max_dim=400, quality=78)
-        to_webp(thumb_jpg, THUMBS_DIR / webp_name(name), quality=78)
+        thumb_path = THUMBS_DIR / (stem_for(name) + ".jpg")
+        save_jpeg(resize_max(im, 400), thumb_path, 78)
+        to_webp(thumb_path, THUMBS_DIR / webp_name(name), 78)
 
-        # Blur placeholder (~32px)
-        blur_jpg = BLUR_DIR / (stem_for(name) + ".jpg")
-        optimize_jpeg(src, blur_jpg, max_dim=32, quality=40)
+        print(f"  {name}: {src.stat().st_size/1024:.0f} KB, thumb {thumb_path.stat().st_size/1024:.0f} KB")
 
-        after = file_size(src)
-        total_after += after
-        print(f"  {name}: {before/1024:.0f} KB -> {after/1024:.0f} KB")
-
-    print(f"\nFull-size total (excl. hero counted once): {total_before/1024/1024:.1f} MB -> {total_after/1024/1024:.1f} MB")
     print("Done.")
 
 
